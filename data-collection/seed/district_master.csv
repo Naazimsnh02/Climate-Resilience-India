@@ -1,0 +1,24 @@
+district_id,name,state,lat,lon,flagged_belt,primary_kharif_crops,datagovin_district_name
+mh_sambhajinagar,Chhatrapati Sambhajinagar,Maharashtra,19.8762,75.3433,Marathwada,"cotton,soybean,maize",Aurangabad
+mh_beed,Beed,Maharashtra,18.9894,75.7601,Marathwada,"cotton,soybean,tur",Beed
+mh_latur,Latur,Maharashtra,18.4088,76.5604,Marathwada,"soybean,tur,cotton",Latur
+mh_dharashiv,Dharashiv (Osmanabad),Maharashtra,18.1860,76.0419,Marathwada,"soybean,tur",Osmanabad
+mh_jalna,Jalna,Maharashtra,19.8410,75.8864,Marathwada,"cotton,soybean",Jalna
+mh_parbhani,Parbhani,Maharashtra,19.2704,76.7602,Marathwada,"cotton,soybean",Parbhani
+mh_hingoli,Hingoli,Maharashtra,19.7178,77.1441,Marathwada,"soybean,cotton",Hingoli
+mh_nanded,Nanded,Maharashtra,19.1383,77.3210,Marathwada,"cotton,soybean",Nanded
+ka_kalaburagi,Kalaburagi,Karnataka,17.3297,76.8343,North Karnataka,"tur,paddy,cotton",Kalaburagi
+ka_vijayapura,Vijayapura,Karnataka,16.8302,75.7100,North Karnataka,"tur,cotton,sunflower",Vijayapura
+ka_bidar,Bidar,Karnataka,17.9104,77.5199,North Karnataka,"tur,soybean",Bidar
+rj_barmer,Barmer,Rajasthan,25.7521,71.3967,Rajasthan,"bajra,moong,guar",Barmer
+rj_jaisalmer,Jaisalmer,Rajasthan,26.9157,70.9083,Rajasthan,"bajra,moong",Jaisalmer
+rj_jodhpur,Jodhpur,Rajasthan,26.2389,73.0243,Rajasthan,"bajra,moth",Jodhpur
+gj_kutch,Kutch,Gujarat,23.2420,69.6669,Gujarat,"cotton,groundnut,bajra",Kachchh
+gj_banaskantha,Banaskantha,Gujarat,24.1720,72.4390,Gujarat,"groundnut,bajra,cotton","Banas Kantha"
+mp_chhatarpur,Chhatarpur,Madhya Pradesh,24.9180,79.5941,Madhya Pradesh,"soybean,paddy",Chhatarpur
+mp_sagar,Sagar,Madhya Pradesh,23.8388,78.7378,Madhya Pradesh,"soybean,urad",Sagar
+cg_mahasamund,Mahasamund,Chhattisgarh,21.1094,82.0973,Chhattisgarh,"paddy",Mahasamund
+up_chitrakoot,Chitrakoot,Uttar Pradesh,25.2000,80.8500,Eastern UP,"paddy,maize",Chitrakoot
+up_banda,Banda,Uttar Pradesh,25.4762,80.3382,Eastern UP,"paddy,tur",Banda
+br_gaya,Gaya,Bihar,24.7955,85.0002,Bihar,"paddy,maize",Gaya
+jh_palamu,Palamu,Jharkhand,24.0333,84.0667,Jharkhand,"paddy,maize",Palamu
