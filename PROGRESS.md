@@ -149,14 +149,39 @@ and long-term roadmap, `DATA_SOURCES.md` for data source findings/caveats.
   2's "Identity/IAM" line item), CI/CD for redeploys (current deploy was a manual
   `gcloud run deploy --source .` run).
 
+**Frontend (`frontend/`, 2026-07-03)**
+- React + Vite (JS, not TS), `react-router-dom` for routing, `leaflet`/`react-leaflet` for the map.
+  No Looker Studio embed — went with a custom Leaflet map instead for tighter control over
+  marker click → drill-down wiring.
+- `src/api.js` — thin fetch wrapper over the Cloud Run backend, base URL from `VITE_API_BASE`
+  (`.env.development` points at the live Cloud Run URL directly, since there's no local BigQuery
+  proxy — the frontend always talks to the deployed backend, even in dev).
+- Two routes: `/admin` (`pages/AdminConsole.jsx`) and `/farmer` (`pages/FarmerChat.jsx`), shared
+  nav shell in `components/Layout.jsx`.
+- Admin console: `components/DistrictMap.jsx` (Leaflet circle markers colored by `risk_score`,
+  click → select), `components/DistrictDrilldown.jsx` (risk score, top feature attributions,
+  every underlying signal with its `as_of` string — mirrors the provenance requirement in
+  PLAN.md section 5), and a Triage/Allocation tab switcher over a shared `components/ChatPanel.jsx`
+  (session_id persisted per agent, `tool_calls` shown in a collapsible debug view).
+- Farmer page reuses the same `ChatPanel` wired to `/api/chat/farmer_advisory`, plain mobile-first
+  layout, no map.
+- Verified end-to-end with Playwright against the live Cloud Run backend (no local API proxy):
+  map renders real district markers from `GET /api/districts`, clicking a marker (Hingoli) loads
+  the drill-down with real risk score (89.9), attributions, and signal as-of stamps from
+  `GET /api/districts/{id}`, tab switching between Triage/Allocation chat panels works, farmer
+  chat page renders cleanly. Zero console errors. Did not complete a full chat round-trip in this
+  verification pass (would hit the paid Gemini API) — chat wiring itself was already verified
+  from the backend side in the API section above.
+- Not yet done: Looker Studio embed (skipped in favor of the custom map), mobile responsiveness
+  beyond a basic breakpoint, WhatsApp/SMS interface (stretch goal per PLAN.md).
+
 ### Not started
 - Full Vertex AI Search RAG corpus (crop advisory PDFs, MGNREGA guidelines, drought playbooks) — deferred in favor of the Gemini+Search-generated `crop_advisory` table above
-- Frontend (admin console map/drill-down, farmer chat UI, Looker Studio embed)
 - Cloud Translation / localization (all agents still English-only, plain text)
 - Cloud Functions / Scheduler automation for recurring ingestion (all pulls currently run manually via `data-collection/run_all.py`)
+- Deploying the frontend itself (currently only verified via local `npm run dev`; not yet pushed to Firebase Hosting/Cloud Run)
 
 ## Next up
-1. Frontend (admin console map/drill-down, farmer chat UI) wired to the live Cloud Run API
-   (`https://climate-resilience-api-731583000008.asia-south1.run.app`)
+1. Deploy the frontend (Firebase Hosting or a second Cloud Run service) so the demo has a public URL, not just local dev
 2. Full Vertex AI Search RAG corpus, if time allows, as an upgrade over the curated `crop_advisory` table
 3. Auth/IAM separation between admin and farmer-facing endpoints before any real deployment beyond the demo
