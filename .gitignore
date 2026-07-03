@@ -12,6 +12,9 @@ data-collection/raw_cache/
 .vscode/
 .idea/
 .pytest_cache/
+.firebase/
+frontend/dist/
+frontend/node_modules/
 credentials.json
 *.key.json
 service-account*.json

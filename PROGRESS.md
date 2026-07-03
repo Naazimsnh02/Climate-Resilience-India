@@ -175,13 +175,29 @@ and long-term roadmap, `DATA_SOURCES.md` for data source findings/caveats.
 - Not yet done: Looker Studio embed (skipped in favor of the custom map), mobile responsiveness
   beyond a basic breakpoint, WhatsApp/SMS interface (stretch goal per PLAN.md).
 
+**Frontend deployment (Firebase Hosting, 2026-07-03)**
+- Firebase added to the existing GCP project (`firebase projects:addfirebase climate-resilience-in`)
+  — free Spark plan (no billing account needed for Hosting alone; the project already has billing
+  linked for Cloud Run/BigQuery, but Hosting itself doesn't require it).
+- `firebase.json` (repo root) serves `frontend/dist` with an SPA rewrite (`**` → `/index.html`) for
+  `react-router-dom` client-side routing; `.firebaserc` pins the default project.
+- Deployed via `firebase deploy --only hosting` after `npm run build`. Live at
+  **https://climate-resilience-in.web.app**.
+- Backend CORS is already `allow_origins=["*"]`, so no backend change was needed for this origin.
+- **Bug found + fixed post-deploy**: first deploy showed "Failed to load districts: Failed to
+  fetch" in the browser. Root cause — `vite build` runs in `production` mode, which only loads
+  `.env.production`/`.env`, never `.env.development`. Since only `.env.development` existed,
+  `VITE_API_BASE` was undefined in the built bundle and `src/api.js` fell back to its
+  `http://localhost:8080` default, which the browser obviously can't reach. Fixed by adding
+  `frontend/.env.production` with the real Cloud Run URL, rebuilding (confirmed the URL is now
+  present in `dist/assets/*.js`), and redeploying. Verified fetches now resolve correctly.
+
 ### Not started
 - Full Vertex AI Search RAG corpus (crop advisory PDFs, MGNREGA guidelines, drought playbooks) — deferred in favor of the Gemini+Search-generated `crop_advisory` table above
 - Cloud Translation / localization (all agents still English-only, plain text)
 - Cloud Functions / Scheduler automation for recurring ingestion (all pulls currently run manually via `data-collection/run_all.py`)
-- Deploying the frontend itself (currently only verified via local `npm run dev`; not yet pushed to Firebase Hosting/Cloud Run)
 
 ## Next up
-1. Deploy the frontend (Firebase Hosting or a second Cloud Run service) so the demo has a public URL, not just local dev
-2. Full Vertex AI Search RAG corpus, if time allows, as an upgrade over the curated `crop_advisory` table
-3. Auth/IAM separation between admin and farmer-facing endpoints before any real deployment beyond the demo
+1. Full Vertex AI Search RAG corpus, if time allows, as an upgrade over the curated `crop_advisory` table
+2. Auth/IAM separation between admin and farmer-facing endpoints before any real deployment beyond the demo
+3. Tighten CORS on the backend to the Firebase Hosting origin instead of `*` before sharing the demo widely

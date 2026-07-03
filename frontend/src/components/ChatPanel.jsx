@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 import { sendChat } from "../api";
 
 export default function ChatPanel({ agent, placeholder, showToolCalls = false }) {
@@ -45,7 +46,13 @@ export default function ChatPanel({ agent, placeholder, showToolCalls = false })
         )}
         {messages.map((m, i) => (
           <div key={i} className={`chat-message chat-message--${m.role}`}>
-            <div className="chat-message__text">{m.text}</div>
+            <div className="chat-message__text">
+              {m.role === "assistant" ? (
+                <ReactMarkdown>{m.text}</ReactMarkdown>
+              ) : (
+                m.text
+              )}
+            </div>
             {showToolCalls && m.toolCalls?.length > 0 && (
               <details className="chat-message__tools">
                 <summary>{m.toolCalls.length} tool call(s)</summary>
