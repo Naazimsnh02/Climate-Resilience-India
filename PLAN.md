@@ -122,9 +122,9 @@ Both consume the same **Decision Intelligence Core**: ingestion → risk model �
 
 ## 4. Agent design (ADK + Gemini)
 
-**Triage Agent** (admin-facing)
+**Triage Agent** (admin-facing) — ✅ built (`agents/triage_agent/`, ADK + Gemini 2.5 Flash), verified end-to-end 2026-07-03
 - Input: "show me top 20 districts at risk" or map click
-- Tools: `query_bigquery(sql)`, `get_risk_score(district_id)`, `get_historical_analog(district_id)`
+- Tools: `get_risk_score(district_id)` ✅ wired to `district_risk_score`, `list_top_risk_districts(limit)` ✅ wired, `query_bigquery(sql)` and `get_historical_analog(district_id)` — not yet built
 - Output: ranked list with the *why* — rainfall deficit %, reservoir days-remaining, historical analog year (e.g., "similar to 2015-16 drought in this district")
 
 **Allocation Agent** (admin-facing)
@@ -152,12 +152,12 @@ All three share the same underlying `district_risk_score` table so the story is 
 
 ## 6. Build sequence (no cut-down — full scope, sequenced)
 
-1. **Data ingestion**: stand up Cloud Functions for IMD, Agmarknet, OpenWeatherMap; GEE export script for NDVI/CHIRPS/soil moisture; one-time load of Tier 2 (CWC/CGWB/NRSC snapshot) into BigQuery
-2. **Warehouse**: finalize BigQuery schema above, load `district_master` (boundaries + crop calendar — from Census/Agri Census open data)
-3. **Risk model**: BigQuery ML logistic/regression baseline for `district_risk_score`, iterate to Vertex AI custom forecasting for reservoir depletion trajectory if time allows
-4. **RAG corpus**: collect crop advisory PDFs (ICAR, state agri dept), MGNREGA drought-works guidelines, past drought response playbooks → Vertex AI Search index
-5. **Agents**: build Triage, Allocation, Farmer Advisory agents on ADK, wire tool-calling to BigQuery + RAG index
-6. **Backend API**: Cloud Run service exposing agent endpoints + risk data endpoints
+1. **Data ingestion** ✅ — Tier 1 (GEE CHIRPS/NDVI/SMAP, Agmarknet/data.gov.in mandi prices, OpenWeatherMap, data.gov.in rainfall) live in BigQuery for 23 seed districts; Tier 2 (CWC/CGWB/NRSC) seeded as a static snapshot table. IMD direct API dropped (no self-serve key). Cloud Functions/Scheduler automation for recurring pulls not yet done (scripts currently run manually via `data-collection/run_all.py`).
+2. **Warehouse** ✅ — BigQuery schema above live in `raw_data` (`climate-resilience-in` project), `district_master` loaded for 23 seed districts.
+3. **Risk model** ✅ (baseline) — BigQuery ML linear regression baseline live (`data-collection/modeling/build_risk_model.py`), `district_risk_score` populated with `ML.EXPLAIN_PREDICT` attributions. This is a calibrated composite index dressed as ML, not a validated predictive model — see the long-term roadmap below for what "real" looks like.
+4. **RAG corpus**: not yet started — collect crop advisory PDFs (ICAR, state agri dept), MGNREGA drought-works guidelines, past drought response playbooks → Vertex AI Search index
+5. **Agents**: Triage Agent ✅ built (get_risk_score, list_top_risk_districts, ADK + Gemini 2.5 Flash). Allocation Agent and Farmer Advisory Agent not yet built.
+6. **Backend API**: not yet started — Cloud Run service exposing agent endpoints + risk data endpoints
 7. **Frontend**: admin console (map + drill-down, Looker Studio embed or custom React map with district choropleth) + farmer chat UI
 8. **Localization**: Cloud Translation for at least 2-3 languages matching flagged districts (Hindi, Marathi, Kannada)
 9. **Demo narrative**: seed with real current data (today's rainfall deficit, current reservoir %), walk through one flagged district end-to-end — risk detected → admin allocates resources → farmer gets sowing advice — closing the full decision loop
@@ -174,6 +174,19 @@ All three share the same underlying `district_risk_score` table so the story is 
 ---
 
 ## Open questions to resolve before coding starts
-- Confirm IMD API is actually reachable and returns data for target districts (has known uptime issues) — test first, have Tier-2-style seeded fallback ready even for rainfall if it's down
-- Confirm GEE account access is provisioned under whatever GCP project/credits the hackathon provides
-- Decide real districts to seed as demo hero examples (recommend picking 3-5 from the "150-200 flagged" belt: e.g., a Marathwada district, a Rajasthan district, an eastern UP district) for a concrete, verifiable demo rather than all-India abstraction
+- ~~Confirm IMD API is actually reachable~~ — resolved: no self-serve key exists, dropped as a live source (see `DATA_SOURCES.md`)
+- ~~Confirm GEE account access is provisioned~~ — resolved: registered, live and pulling CHIRPS/NDVI/SMAP
+- ~~Decide real districts to seed as demo hero examples~~ — resolved: 23 districts across the flagged belt in `district_master.csv`
+
+---
+
+## 8. Long-term roadmap: model quality + full-India coverage
+
+Where the risk model stands today (2026-07-03): a BQML linear regression over 23 hand-seeded districts, trained to reproduce a hand-parsed drought-bulletin ordinal (`drought_status.status` text → 1-4 score). At n=23 with no held-out split, this is a calibrated composite index dressed as ML, not a validated predictive model. Path to something real:
+
+1. **Add a time axis.** Every source except `rainfall_daily` is a single snapshot per district today (`ndvi_soil_moisture`, `reservoir_status`, `groundwater_level`). Turning these into true daily/weekly time series is the single highest-leverage change — it lets the model learn *trajectories* (reservoir decline rate, rainfall deficit trend) instead of a point-in-time composite, and unlocks Vertex AI Forecasting for `days_to_critical_reservoir` with real prediction intervals, replacing today's flat 0.3pp/day heuristic.
+2. **Get a real label.** `drought_status.status` is scraped free text, not rigorous ground truth. Long-term: backtest against actual historical drought-year outcomes (crop yield loss, MGNREGA work-demand spikes, or IMD's own drought classification) for districts with multi-year history, so the model is validated against something with real stakes rather than circularly trained against a label built from similar inputs.
+3. **Scale from 23 to ~750 districts.** `district_master` + GEE pulls parameterize cleanly over lat/lon (data-entry expansion, not architecture change). Tier 2 (CWC/CGWB/NRSC) is the hard part — not scrapable per `DATA_SOURCES.md` findings, so 750 districts of hand-researched CSVs won't scale. Worth a real IMD API application and revisiting India-WRIS's WIMS handshake for reservoir telemetry at that point. Mandi prices already cover far more districts than are seeded — cheap to widen first.
+4. **Unblock IMD.** The one clean current-conditions, full-district-granularity rainfall source has no self-serve key. CHIRPS (current proxy) lags ~1 month and is satellite-inferred, not ground-truth station data. Worth applying directly to IMD in parallel with other build work.
+5. **Guard against silent data rot.** Already burned once (SMAP10KM deprecated 4 years ago, would have silently poisoned the model if not caught manually). At scale, add a scheduled freshness check per source (compare `*_asof` against expected cadence, alert on staleness) instead of relying on catching it during a build session.
+6. **Retraining cadence + drift monitoring.** Once real time series exist, retrain on a schedule (e.g. weekly, ahead of each CWC Thursday bulletin) and track prediction drift/calibration over a season — feeds the confidence-bands requirement in section 5 rather than a single static fit.
