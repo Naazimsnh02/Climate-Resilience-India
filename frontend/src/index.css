@@ -1,22 +1,23 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
+  --text: #334155; /* Slate 700 - professional, clean text */
+  --text-h: #0f172a; /* Slate 900 - crisp high-contrast headings */
+  --bg: #f8fafc; /* Slate 50 - clean, professional off-white/grey-blue background */
+  --border: #e2e8f0; /* Slate 200 - clean dividing lines */
+  --code-bg: #cbd5e1; /* Slate 300 - structured badge and block background */
+  --accent: #0f766e; /* Deep Forest Teal - representative of environmental structure, earth, and resilience */
+  --accent-bg: rgba(15, 118, 110, 0.08);
+  --accent-border: rgba(15, 118, 110, 0.3);
+  --accent-text: #ffffff; /* White text on deep teal background */
+  --social-bg: rgba(226, 232, 240, 0.5);
   --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+    rgba(15, 23, 42, 0.06) 0 10px 15px -3px, rgba(15, 23, 42, 0.03) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --heading: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
+  font: 16px/150% var(--sans);
+  letter-spacing: 0.1px;
   color-scheme: light dark;
   color: var(--text);
   background: var(--bg);
@@ -26,23 +27,24 @@
   -moz-osx-font-smoothing: grayscale;
 
   @media (max-width: 1024px) {
-    font-size: 16px;
+    font-size: 15px;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
+    --text: #94a3b8; /* Slate 400 - softer text on dark background */
+    --text-h: #f8fafc; /* Slate 50 - high readability bright headings */
+    --bg: #0f172a; /* Slate 900 - beautiful slate dark mode instead of generic pitch black */
+    --border: #1e293b; /* Slate 800 - dark borders */
+    --code-bg: #1e293b; /* Slate 800 - inline code and badge backgrounds */
+    --accent: #2dd4bf; /* Mint/Teal 400 - high energy, beautiful, accessible green-blue */
+    --accent-bg: rgba(45, 212, 191, 0.12);
+    --accent-border: rgba(45, 212, 191, 0.4);
+    --accent-text: #0f172a; /* Dark slate text on bright mint background */
+    --social-bg: rgba(30, 41, 59, 0.5);
     --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+      rgba(0, 0, 0, 0.3) 0 10px 15px -3px, rgba(0, 0, 0, 0.2) 0 4px 6px -2px;
   }
 
   #social .button-icon {

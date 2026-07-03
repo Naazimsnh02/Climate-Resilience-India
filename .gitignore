@@ -19,3 +19,4 @@ credentials.json
 *.key.json
 service-account*.json
 .claude/
+docs/

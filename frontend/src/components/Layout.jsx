@@ -4,7 +4,10 @@ export default function Layout() {
   return (
     <div className="app-shell">
       <header className="app-header">
-        <span className="app-header__title">El Niño 2026 Decision Copilot</span>
+        <div className="app-header__brand">
+          <img src="/logo_transparent.png" className="app-header__logo" alt="Climate Resilience India Logo" />
+          <span className="app-header__title">El Niño 2026 Decision Copilot</span>
+        </div>
         <nav className="app-header__nav">
           <NavLink to="/admin" className={({ isActive }) => (isActive ? "nav-link nav-link--active" : "nav-link")}>
             Admin Console

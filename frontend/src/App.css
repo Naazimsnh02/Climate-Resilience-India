@@ -1,7 +1,9 @@
 .app-shell {
   display: flex;
   flex-direction: column;
-  min-height: 100svh;
+  height: 100svh;
+  max-height: 100svh;
+  overflow: hidden;
 }
 
 .app-header {
@@ -10,6 +12,18 @@
   justify-content: space-between;
   padding: 12px 24px;
   border-bottom: 1px solid var(--border);
+}
+
+.app-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-header__logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
 }
 
 .app-header__title {
@@ -27,23 +41,38 @@
   text-decoration: none;
   padding: 6px 12px;
   border-radius: 6px;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  background: rgba(15, 118, 110, 0.04);
+  color: var(--text-h);
 }
 
 .nav-link--active {
   color: var(--text-h);
   background: var(--accent-bg);
+  font-weight: 500;
+}
+
+@media (prefers-color-scheme: dark) {
+  .nav-link:hover {
+    background: rgba(45, 212, 191, 0.05);
+  }
 }
 
 .app-main {
   flex: 1;
   display: flex;
   min-height: 0;
+  overflow: hidden;
 }
 
 .admin-console {
   display: flex;
   width: 100%;
   min-height: 0;
+  overflow: hidden;
 }
 
 .admin-console__map-col {
@@ -328,8 +357,14 @@
   border-radius: 8px;
   border: none;
   background: var(--accent);
-  color: white;
+  color: var(--accent-text);
   cursor: pointer;
+  font-weight: 500;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.chat-input button:hover {
+  opacity: 0.9;
 }
 
 .chat-input button:disabled {
@@ -365,8 +400,17 @@
 }
 
 @media (max-width: 900px) {
+  .app-shell {
+    height: auto;
+    max-height: none;
+    overflow: auto;
+  }
+  .app-main {
+    overflow: auto;
+  }
   .admin-console {
     flex-direction: column;
+    overflow: auto;
   }
   .admin-console__map-col {
     border-right: none;
