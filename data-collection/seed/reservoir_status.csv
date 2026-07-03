@@ -1,0 +1,24 @@
+district_id,reservoir_name,pct_full,pct_normal,asof_date,granularity,notes,source_url
+mh_sambhajinagar,Jayakwadi (Paithan),28.03,,2026-06-30,district,"down from 42.85% same date last year; water reserved for drinking only",https://www.business-standard.com/india-news/water-levels-in-marathwada-reservoir-fall-to-33-amid-delayed-monsoon-126063000683_1.html
+mh_beed,Majalgaon / Manjara,18.75,,2026-06-30,district,Majalgaon 18.75%; Manjara (shared w/ Latur) 19.12%,https://www.business-standard.com/india-news/water-levels-in-marathwada-reservoir-fall-to-33-amid-delayed-monsoon-126063000683_1.html
+mh_latur,Manjara,19.12,,2026-06-30,regional,shared gauge with Beed,https://www.business-standard.com/india-news/water-levels-in-marathwada-reservoir-fall-to-33-amid-delayed-monsoon-126063000683_1.html
+mh_dharashiv,Sina Kolegaon / Nimna Terna,-2.87,,2026-06-30,district,Sina Kolegaon effectively dry (negative storage); Nimna Terna 35.06%,https://www.business-standard.com/india-news/water-levels-in-marathwada-reservoir-fall-to-33-amid-delayed-monsoon-126063000683_1.html
+mh_jalna,Jayakwadi (regional),28.03,,2026-06-30,regional,Godavari system shared gauge with Sambhajinagar,https://www.business-standard.com/india-news/water-levels-in-marathwada-reservoir-fall-to-33-amid-delayed-monsoon-126063000683_1.html
+mh_parbhani,Nimna Dudhna / Yeldari,25.50,,2026-06-30,district,Nimna Dudhna 25.50%; Yeldari 51.70%,https://www.business-standard.com/india-news/water-levels-in-marathwada-reservoir-fall-to-33-amid-delayed-monsoon-126063000683_1.html
+mh_hingoli,Siddheshwar,0,,2026-06-30,district,effectively empty vs 21.39% a year ago,https://www.business-standard.com/india-news/water-levels-in-marathwada-reservoir-fall-to-33-amid-delayed-monsoon-126063000683_1.html
+mh_nanded,Vishnupuri / Manar / Penganga,36.51,,2026-06-30,district,Vishnupuri 36.51%; Manar 40.49%; Penganga 44.97%,https://www.business-standard.com/india-news/water-levels-in-marathwada-reservoir-fall-to-33-amid-delayed-monsoon-126063000683_1.html
+ka_kalaburagi,,,,,,no in-district CWC dam; Bhima river system regional only,https://www.downtoearth.org.in/agriculture/around-200-districts-flagged-for-el-nino-impact-as-weak-monsoon-forecast-puts-agriculture-ministry-in-crisis-mode
+ka_vijayapura,Almatti (Lal Bahadur Shastri Dam),77,,2026-05-28,district,"hit max storage 2026-06-18; southern-region CWC aggregate 20.76% vs 44.67% last year",https://magazine.watertoday.org/
+ka_bidar,Karanja Dam,,,,regional,no 2026 live-storage figure found; Manjra tributary of Godavari basin,https://indiawris.gov.in/wiki/doku.php?id=cgwb_ground_water_resources
+rj_barmer,,,,,,canal-fed (Indira Gandhi Canal); no major dam/live-storage metric,https://www.downtoearth.org.in/water/barmers-groundwater-records
+rj_jaisalmer,,,,,,canal-fed (Indira Gandhi Canal); negligible reservoir storage,NA
+rj_jodhpur,,,,,,small local tanks/minor irrigation only; no major CWC reservoir,NA
+gj_kutch,Tappar / Rudramata (regional),76.4,,2026-06-25,regional,Tappar 76.4%; Rudramata 60.8%; Kutch-Saurashtra basin described as above normal,https://www.bilkulonline.com/2026/07/03/rainfall-picks-up-across-gujarat
+gj_banaskantha,Dantiwada Dam,13,,2025-02-01,district,"stale reference only (Feb 2025); Sipu Dam 11% Aug 2025; no confirmed Jul 2026 figure; state-wide 119/207 Gujarat dams below 25% as of 2026-07-03",https://wrd.guj.nic.in/dam/pdf.php
+mp_chhatarpur,Gangau / Barigarh / Rangawan (Ken basin),35.09,,2026-06-11,regional,MP Central-zone CWC aggregate (MP+CG+UP+UK); Ken-Betwa Daudhan Dam still under construction,https://gwdata.cgwb.gov.in/
+mp_sagar,Bansagar / Rajghat (regional refs),83.16,,2026-06-11,regional,not Sagar-specific; nearest major reservoir references only,https://english.dainikjagranmpcg.com/
+cg_mahasamund,Murumsilli / Madamsilli (Mahanadi basin),35.09,,2026-06-11,regional,Central-zone CWC aggregate; Mahanadi basin described as above normal,https://gwdata.cgwb.gov.in/
+up_chitrakoot,"Matatila (Betwa, regional)",40.58,,2026-05-14,regional,no in-district CWC dam,https://gwdata.cgwb.gov.in/
+up_banda,Matatila Reservoir (Betwa),40.58,,2026-05-14,regional,"part of the 13 major reservoirs nationally below 50% of normal storage",https://www.downtoearth.org.in/water/thirteen-major-reservoirs-below-50-storage-as-river-basins-across-india-record-rapid-water-decline
+br_gaya,"Gayaji Dam (rubber dam, Falgu River)",,,,district,not CWC-monitored / no live-storage bulletin,NA
+jh_palamu,North Koel Reservoir / Mandal Dam,,,,district,revival project under construction; not yet reporting live storage,https://www.pmindia.gov.in/

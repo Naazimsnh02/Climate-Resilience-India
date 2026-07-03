@@ -120,6 +120,17 @@ The claim that ~150-200 districts are on priority watch for the 2026 El Niño mo
 
 **Decision:** Build the live pipeline on Tier 1 sources. Pre-load Tier 2 as a seeded BigQuery table (scrape/download once, timestamp it, refresh if time allows) so the district risk model still incorporates reservoir/groundwater/drought-bulletin context without needing a live scraper to be demo-reliable. This is disclosed openly in the demo narrative ("reservoir/groundwater data refreshed weekly/quarterly by source agencies — we sync on that cadence") rather than faked as real-time.
 
+## Tier 2 seed — loaded (2026-07-03)
+
+`reservoir_status`, `groundwater_level`, `drought_status` (23 rows each, one per seed district) are now live in BigQuery, loaded via `data-collection/ingestion/load_tier2_seed.py` from hand-researched CSVs in `data-collection/seed/`. Findings:
+
+- **CWC/CGWB/NRSC portals are not scrapable in any reasonable hackathon timeframe** — CWC's bulletin is only reachable through news coverage citing it, CGWB's district PDF bulletins are frequently down ("maintenance mode") or unparseable, and NRSC NADAMS has no accessible district-level API. Went with WebSearch-sourced, citation-backed figures instead of a scraper.
+- **Coverage is genuinely uneven by design, not a bug**: several districts (`rj_barmer`, `rj_jaisalmer`, `rj_jodhpur`, `br_gaya`) have no reservoir metric because they're canal-fed desert or rain-fed terrain with no CWC-monitored dam — a real geographic fact. `reservoir_status.pct_normal` (10-yr normal) is almost always NULL because sources report year-over-year comparison instead; treat `pct_full` as the primary signal.
+- **`granularity` column matters**: many rows are `regional` (nearest basin/state figure), not `district`-exact — several Marathwada districts share the same Jayakwadi/Manjara gauge, MP/CG figures often fall back to the CWC Central-zone aggregate. Don't present these as district-precise in the UI; surface `granularity` alongside the number.
+- **`groundwater_level.level_m_bgl` is mostly NULL** — CGWB bulletins report qualitative trend (rising/falling/mixed) far more reliably than numeric depth. Trend is the usable signal; depth is bonus where present.
+- Loader uses `WRITE_TRUNCATE` (each run replaces the whole snapshot) unlike the Tier 1 scripts' `WRITE_APPEND`, since this isn't a time series — re-run `load_tier2_seed.py` after editing the seed CSVs to refresh.
+- Per-row `source_url` is preserved in each table for the explainability/provenance requirement in `PLAN.md` section 5.
+
 ## Sources
 - [IMD API reference](https://api.imd.gov.in/public/api_reference.html)
 - [data.gov.in Rainfall catalog](https://www.data.gov.in/catalog/rainfall)

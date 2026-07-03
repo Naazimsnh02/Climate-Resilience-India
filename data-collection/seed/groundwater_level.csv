@@ -1,0 +1,24 @@
+district_id,trend,level_m_bgl,asof_date,granularity,notes,source_url
+mh_sambhajinagar,falling,,undated,regional,regional Marathwada trend; no district-specific numeric depth found,https://www.deccanherald.com/
+mh_beed,falling,,undated,regional,regional Marathwada trend,https://www.deccanherald.com/
+mh_latur,falling,,undated,regional,regional Marathwada trend,https://www.deccanherald.com/
+mh_dharashiv,falling,,undated,regional,regional Marathwada trend,https://www.deccanherald.com/
+mh_jalna,falling,,undated,regional,regional Marathwada trend,https://www.deccanherald.com/
+mh_parbhani,falling,,undated,regional,regional Marathwada trend,https://www.deccanherald.com/
+mh_hingoli,falling,,undated,regional,regional Marathwada trend,https://www.deccanherald.com/
+mh_nanded,falling,,undated,regional,regional Marathwada trend,https://www.deccanherald.com/
+ka_kalaburagi,falling,,2025-05-01,regional,pre-monsoon 2025 CGWB regional trend,https://www.eprajournals.com/pdf/fm/202508-11-023624
+ka_vijayapura,,,,,regional bulletin inaccessible,NA
+ka_bidar,falling,,2025-05-01,regional,"2-4m decline in ~3% of wells, pre-monsoon 2025 CGWB",https://indiawris.gov.in/wiki/doku.php?id=cgwb_ground_water_resources
+rj_barmer,falling/stagnant,,2024-01-01,district,"~28% of wells >40m bgl; ~35% at 20-40m; ~23% at 10-20m; despite recharge spend",https://www.downtoearth.org.in/water/barmers-groundwater-records
+rj_jaisalmer,falling,,undated,regional,,https://mel.cgiar.org/overview/cluster/id/15
+rj_jodhpur,falling,,undated,regional,top district for historical drought frequency in Rajasthan,https://phedwater.rajasthan.gov.in/
+gj_kutch,falling,,undated,regional,chronic over-extraction,https://cgwb.gov.in/old_website/District_Profile/Gujarat/Kachchh.pdf
+gj_banaskantha,falling,,undated,regional,CGWB semi-critical/over-exploited category,https://cgwb.gov.in/District_Profile/Gujarat/Banaskantha.pdf
+mp_chhatarpur,mixed,,2024-01-01,regional,"mostly >3m bgl typical, localized fall >4m; 2024 CGWB assessment",https://india.mongabay.com/
+mp_sagar,mixed,,2024-01-01,regional,"mostly >3m bgl typical, localized fall >4m; 2024 CGWB assessment",https://india.mongabay.com/
+cg_mahasamund,mixed,,2025-01-01,regional,"<2m bgl shallow zones to 10-20m bgl deeper zones; pre-monsoon 2025",https://gwdata.cgwb.gov.in/download/Bulletin/Chhatisgarh-WL-Bulletin-Pre-monsoon2025.pdf
+up_chitrakoot,mixed/patchy,,2025-05-01,regional,isolated fall >4m and rise 2-4m; pre-monsoon 2025 CGWB,https://gwdata.cgwb.gov.in/download/Bulletin/Uttar%20Pradesh-WL-Bulletin-Pre-monsoon2025.pdf
+up_banda,falling,,2026-06-22,district,>2m/decade decline in some villages per 2026 CSE study; patchy elsewhere,https://www.downtoearth.org.in/
+br_gaya,,,,,no data found,NA
+jh_palamu,falling,,2025-01-01,regional,2-18m bgl range per CGWB-sourced study,NA

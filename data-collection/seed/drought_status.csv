@@ -1,0 +1,24 @@
+district_id,status,asof_date,granularity,notes,source_url
+mh_sambhajinagar,severe,2026-06-17,district,"water reserved for drinking only; tanker-dependent villages 119->244 in one month; 413 tankers, 1329 wells active",https://www.deccanherald.com/india/maharashtra/marathwada-water-stress-4042033
+mh_beed,high-risk,2026-06-30,district,"2026 geospatial study: rainfall anomaly <-230mm, soil moisture <36%",https://link.springer.com/article/10.1007/s00704-026-06125-x
+mh_latur,high-risk,2026-06-30,district,2026 geospatial drought-susceptibility study,https://link.springer.com/article/10.1007/s00704-026-06125-x
+mh_dharashiv,severe,2026-06-30,district,among worst-hit in Marathwada; Sina Kolegaon reservoir at negative storage,https://www.business-standard.com/india-news/water-levels-in-marathwada-reservoir-fall-to-33-amid-delayed-monsoon-126063000683_1.html
+mh_jalna,high,2026-06-17,district,historically 2nd-highest tanker-dependent district in Marathwada scarcity seasons,https://www.thebetterindia.com/
+mh_parbhani,moderate-high,2026-06-30,regional,Marathwada June rainfall at 79.6% of normal,https://www.business-standard.com/india-news/water-levels-in-marathwada-reservoir-fall-to-33-amid-delayed-monsoon-126063000683_1.html
+mh_hingoli,severe,2026-06-30,district,Siddheshwar project effectively dry,https://www.business-standard.com/india-news/water-levels-in-marathwada-reservoir-fall-to-33-amid-delayed-monsoon-126063000683_1.html
+mh_nanded,moderate,2026-06-30,regional,less severe than western Marathwada but still below normal,https://www.business-standard.com/india-news/water-levels-in-marathwada-reservoir-fall-to-33-amid-delayed-monsoon-126063000683_1.html
+ka_kalaburagi,elevated,2026-07-01,district,"IMD flagged for sharpest below-normal rainfall under El Nino 2026; ranked 2nd-most climate-vulnerable district in Karnataka",https://www.downtoearth.org.in/agriculture/around-200-districts-flagged-for-el-nino-impact-as-weak-monsoon-forecast-puts-agriculture-ministry-in-crisis-mode
+ka_vijayapura,elevated,2026-07-01,regional,"rain-shadow, drought-vulnerable district in below-normal-rainfall belt",https://www.downtoearth.org.in/agriculture/around-200-districts-flagged-for-el-nino-impact-as-weak-monsoon-forecast-puts-agriculture-ministry-in-crisis-mode
+ka_bidar,elevated,2026-07-01,district,ranked #1 most climate/drought-vulnerable district in Karnataka (2025 study),https://www.eprajournals.com/pdf/fm/202508-11-023624
+rj_barmer,elevated,2026-06-01,regional,chronically drought-prone (27 historical droughts); national monsoon deficit 41-46% late June 2026,https://www.downtoearth.org.in/water/barmers-groundwater-records
+rj_jaisalmer,elevated,2026-06-01,regional,most drought-prone district in Rajasthan historically (35 recorded droughts),https://mel.cgiar.org/overview/cluster/id/15
+rj_jodhpur,elevated,2026-06-01,regional,chronically drought-prone; top for historical drought frequency,https://link.springer.com/article/10.1007/s13201-023-02085-z
+gj_kutch,severe,2026-07-03,district,only 0.40% of seasonal average rainfall received as of 2026-07-03; among lowest in Gujarat,https://www.bilkulonline.com/2026/07/03/rainfall-picks-up-across-gujarat
+gj_banaskantha,elevated,2026-07-03,regional,Gujarat-wide 119 of 207 dams below 25% capacity as of 2026-07-03,https://wrd.guj.nic.in/dam/pdf.php
+mp_chhatarpur,high,2026-06-22,regional,Sagar division rainfall deficit 71% (Jun 1-22 2026); MP state deficit 52%,https://english.dainikjagranmpcg.com/states/madhya-pradesh/mp-weather-alert-52-rain-deficit-heatwave-in-4-districts/article-20495
+mp_sagar,high,2026-06-22,district,Sagar division rainfall deficit 71% (Jun 1-22 2026); Bundelkhand chronically drought-prone,https://english.dainikjagranmpcg.com/states/madhya-pradesh/mp-weather-alert-52-rain-deficit-heatwave-in-4-districts/article-20495
+cg_mahasamund,severe,2026-06-27,district,"20.7mm vs 105.4mm normal rainfall (~80% deficit); state-wide Chhattisgarh deficit 65-69% since Jun 1 2026",https://english.dainikjagranmpcg.com/
+up_chitrakoot,elevated (forecast),2026-06-01,regional,IMD 2026 season forecast 90% LPA with 60% chance deficient; regional Bundelkhand stress,https://www.downtoearth.org.in/
+up_banda,high,2026-06-22,district,record heatwave ~47-48C May 2026 compounding groundwater stress; regional Bundelkhand crisis,https://www.downtoearth.org.in/
+br_gaya,mixed,2026-07-01,regional,traditionally drought-prone (Magadh zone) but state monsoon deficit ~40% in Jun improving with Jul alerts,https://www.downtoearth.org.in/
+jh_palamu,severe,2026-06-27,district,"86% rainfall deficit Jun 1-26 2026 (hardest-hit in Jharkhand); paddy sowing only 4.91%; state deficit 60-61%; most drought-prone district in Jharkhand",https://thejharkhandstory.co.in/jharkhand-records-61-monsoon-rainfall-deficit-imd-forecasts-advancement-over-next-3-4-days/
