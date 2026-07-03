@@ -2,25 +2,40 @@ import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { sendChat } from "../api";
 
-export default function ChatPanel({ agent, placeholder, showToolCalls = false }) {
+export default function ChatPanel({
+  agent,
+  placeholder,
+  showToolCalls = false,
+  pendingMessage = null,
+  onPendingSent,
+  onFirstMessage,
+}) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [sessionId, setSessionId] = useState(null);
   const [error, setError] = useState(null);
   const bottomRef = useRef(null);
+  const lastPendingRef = useRef(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  async function handleSend(e) {
-    e.preventDefault();
-    const text = input.trim();
+  useEffect(() => {
+    if (pendingMessage && pendingMessage !== lastPendingRef.current) {
+      lastPendingRef.current = pendingMessage;
+      doSend(pendingMessage);
+      onPendingSent?.();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pendingMessage]);
+
+  async function doSend(text) {
     if (!text || sending) return;
+    if (messages.length === 0) onFirstMessage?.();
 
     setMessages((m) => [...m, { role: "user", text }]);
-    setInput("");
     setSending(true);
     setError(null);
 
@@ -36,6 +51,14 @@ export default function ChatPanel({ agent, placeholder, showToolCalls = false })
     } finally {
       setSending(false);
     }
+  }
+
+  async function handleSend(e) {
+    e.preventDefault();
+    const text = input.trim();
+    if (!text || sending) return;
+    setInput("");
+    await doSend(text);
   }
 
   return (

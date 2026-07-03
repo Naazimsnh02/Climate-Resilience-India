@@ -32,4 +32,4 @@ app.include_router(chat.router)
 
 @app.get("/health")
 def health():
-    return {"status": "ok"}
+    return {"status": "ok", "model": "gemini-2.5-flash"}

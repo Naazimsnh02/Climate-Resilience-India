@@ -12,6 +12,10 @@ async function request(path, options) {
   return res.json();
 }
 
+export function getHealth() {
+  return request("/health");
+}
+
 export function listDistricts() {
   return request("/api/districts");
 }
