@@ -129,17 +129,34 @@ and long-term roadmap, `DATA_SOURCES.md` for data source findings/caveats.
   against `climate-resilience-in`) the way `generate_crop_advisory.py` already does.
 - CORS wide open (`allow_origins=["*"]`) since the frontend's dev port isn't fixed yet —
   tighten before any real deployment.
-- Not yet done: Cloud Run deployment (Dockerfile/deploy config), auth/IAM separation between
-  admin and farmer-facing endpoints (PLAN.md section 2's "Identity/IAM" line item).
+**Cloud Run deployment (2026-07-03)**
+- `Dockerfile` (repo root, `python:3.13-slim`, installs `backend/requirements.txt` +
+  `agents/requirements.txt`, copies only `backend/` + `agents/` — `data-collection/` and docs
+  excluded via `.dockerignore`) and deployed with
+  `gcloud run deploy climate-resilience-api --source . --region asia-south1`.
+- Live at `https://climate-resilience-api-731583000008.asia-south1.run.app` — public/
+  unauthenticated (PLAN.md's admin/farmer IAM separation is still deferred), 512Mi/120s timeout.
+- `GOOGLE_API_KEY` supplied via Secret Manager (`google-api-key` secret, `secretAccessor` role
+  granted to the default compute service account `731583000008-compute@developer.gserviceaccount.com`)
+  rather than a plain env var, so it doesn't show up in `gcloud run services describe` output.
+  `GCP_PROJECT`/`BQ_DATASET` set as plain env vars (not sensitive).
+- Verified live end-to-end post-deploy: `/health`, `/api/districts`, `/api/districts/{id}`, and
+  `/api/chat/triage` (a real "top 3 riskiest districts" query correctly called
+  `list_top_risk_districts` + `get_risk_score` x3 and returned a grounded, cited answer —
+  confirms BigQuery access, the Gemini secret, and the ADK runner all work against the deployed
+  container, not just local dev).
+- Not yet done: auth/IAM separation between admin and farmer-facing endpoints (PLAN.md section
+  2's "Identity/IAM" line item), CI/CD for redeploys (current deploy was a manual
+  `gcloud run deploy --source .` run).
 
 ### Not started
 - Full Vertex AI Search RAG corpus (crop advisory PDFs, MGNREGA guidelines, drought playbooks) — deferred in favor of the Gemini+Search-generated `crop_advisory` table above
-- Backend deployment to Cloud Run (API itself is built and locally verified — see above)
 - Frontend (admin console map/drill-down, farmer chat UI, Looker Studio embed)
 - Cloud Translation / localization (all agents still English-only, plain text)
 - Cloud Functions / Scheduler automation for recurring ingestion (all pulls currently run manually via `data-collection/run_all.py`)
 
 ## Next up
-1. Frontend (admin console map/drill-down, farmer chat UI) wired to the now-live `backend/` API
-2. Deploy `backend/` to Cloud Run
-3. Full Vertex AI Search RAG corpus, if time allows, as an upgrade over the curated `crop_advisory` table
+1. Frontend (admin console map/drill-down, farmer chat UI) wired to the live Cloud Run API
+   (`https://climate-resilience-api-731583000008.asia-south1.run.app`)
+2. Full Vertex AI Search RAG corpus, if time allows, as an upgrade over the curated `crop_advisory` table
+3. Auth/IAM separation between admin and farmer-facing endpoints before any real deployment beyond the demo
