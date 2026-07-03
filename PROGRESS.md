@@ -77,19 +77,38 @@ and long-term roadmap, `DATA_SOURCES.md` for data source findings/caveats.
 
 **Farmer Advisory Agent (`agents/farmer_advisory_agent/`)**
 - Built on ADK + Gemini 2.5 Flash. Tools: `get_risk_score` (reused from Triage Agent — same
-  underlying model), `get_rainfall_forecast` ✅, `get_crop_advisory` ✅ — all verified
-  end-to-end against BigQuery 2026-07-03.
-- **RAG-corpus decision (2026-07-03)**: PLAN.md originally called for Vertex AI Search RAG
-  over crop advisory/scheme docs. Deferred — no real document corpus collected yet. Instead,
-  `data-collection/ingestion/generate_crop_advisory.py` generates citation-backed advisory
-  rules via **Gemini + Google Search grounding** (not hand-research, not Claude WebSearch) —
-  one call per district, asking for real ICAR/state agri-dept contingency-plan guidance
-  (e.g. Latur: "complete soybean sowing by July 25, avoid fresh sowing beyond that" /
-  "if cotton sowing delayed past July 23-29, switch to indigenous varieties and prefer tur").
-  Every claimed `source_url` is cross-checked against the actual grounded search results
-  (`grounding_metadata.grounding_chunks`); mismatches are replaced with a real grounded URL
-  and flagged `verified_grounded=False` rather than trusted blindly. Upgrade path to full
-  Vertex AI Search RAG once real advisory PDFs are collected.
+  underlying model), `get_rainfall_forecast` ✅, `search_advisory_corpus` ✅ (real RAG,
+  see below), `get_crop_advisory` ✅ (now a fallback) — all verified end-to-end 2026-07-03.
+- **Full Vertex AI Search RAG corpus — built 2026-07-03**: PLAN.md originally called for
+  Vertex AI Search RAG over real crop advisory/scheme docs, deferred earlier in the build for
+  lack of a document corpus. Closed the gap: found the real, complete ICAR-CRIDA District
+  Agriculture Contingency Plan PDF index at `icar-crida.res.in/CP-2012/district.html` (older
+  plans) and `icar-crida.res.in/CP/<State>/` (newer revisions), matched all 23 seed districts
+  by hand against it — **23/23 district-exact PDFs found** (no regional/state-level fallback
+  needed), manifest in `data-collection/seed/rag_corpus_manifest.csv`. Downloaded and staged
+  via `data-collection/ingestion/upload_rag_corpus.py` to
+  `gs://climate-resilience-in-raw/rag-corpus/{district_id}/`. Created a Vertex AI Search
+  (Discovery Engine) unstructured data store (`crop-advisory-corpus`) and search app
+  (`crop-advisory-search`) over that GCS prefix — all 23 PDFs imported and confirmed
+  searchable (`totalSize: 23` on a live query). New tool `search_advisory_corpus` in
+  `agents/farmer_advisory_agent/tools.py` calls the Discovery Engine Search API and returns
+  real snippets + document title/GCS URI, filtered client-side to the queried district (no
+  documented server-side GCS-path filter for content data stores, so the tool checks the
+  returned `link` contains `rag-corpus/{district_id}/` rather than trusting query relevance
+  alone). Verified live: a Latur query returned a real passage from
+  `Maharashtra 28 -Latur- 31-12-2011.pdf` about delayed-sowing soybean contingency measures;
+  a Barmer query returned a real passage from `RAJ10-Barmer-9.3.2012.pdf`. Agent instructions
+  updated to call `search_advisory_corpus` first and only fall back to the Gemini-generated
+  `get_crop_advisory` table if the real corpus returns no results for that district/question.
+- **Prior stopgap, now the fallback**: `data-collection/ingestion/generate_crop_advisory.py`
+  generates citation-backed advisory rules via **Gemini + Google Search grounding** (not
+  hand-research, not Claude WebSearch) — one call per district, asking for real ICAR/state
+  agri-dept contingency-plan guidance (e.g. Latur: "complete soybean sowing by July 25, avoid
+  fresh sowing beyond that" / "if cotton sowing delayed past July 23-29, switch to indigenous
+  varieties and prefer tur"). Every claimed `source_url` is cross-checked against the actual
+  grounded search results (`grounding_metadata.grounding_chunks`); mismatches are replaced
+  with a real grounded URL and flagged `verified_grounded=False` rather than trusted blindly.
+  Still used when the real corpus has no relevant passage for a district/question.
 - **Free-tier quota hit mid-run**: the Gemini Developer API key caps at 20 requests/day/model,
   not enough for 23 districts in one run. Switched to calling Gemini via the **Vertex AI
   backend** (`genai.Client(vertexai=True, project=...)`), billed against the already-linked
@@ -193,11 +212,11 @@ and long-term roadmap, `DATA_SOURCES.md` for data source findings/caveats.
   present in `dist/assets/*.js`), and redeploying. Verified fetches now resolve correctly.
 
 ### Not started
-- Full Vertex AI Search RAG corpus (crop advisory PDFs, MGNREGA guidelines, drought playbooks) — deferred in favor of the Gemini+Search-generated `crop_advisory` table above
+- MGNREGA drought-works guidelines / broader scheme docs in the RAG corpus — current corpus is ICAR-CRIDA district contingency plans only (23/23 districts); MGNREGA guidance would be one additional national-level doc, not yet added
 - Cloud Translation / localization (all agents still English-only, plain text)
 - Cloud Functions / Scheduler automation for recurring ingestion (all pulls currently run manually via `data-collection/run_all.py`)
 
 ## Next up
-1. Full Vertex AI Search RAG corpus, if time allows, as an upgrade over the curated `crop_advisory` table
+1. Add MGNREGA drought-works guidelines to the RAG corpus (one national doc, not per-district)
 2. Auth/IAM separation between admin and farmer-facing endpoints before any real deployment beyond the demo
 3. Tighten CORS on the backend to the Firebase Hosting origin instead of `*` before sharing the demo widely

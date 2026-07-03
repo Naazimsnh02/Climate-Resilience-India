@@ -1,0 +1,24 @@
+district_id,doc_type,source_url,granularity,retrieved_date
+mh_sambhajinagar,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Maharastra(Pdf)/MAU, Parbhani/Maharashtra 26-Aurangabad-3 1-12-2011.pdf",district,2026-07-03
+mh_beed,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Maharastra(Pdf)/MAU, Parbhani/Maharashtra 27-Beed-3 1-12-2011.pdf",district,2026-07-03
+mh_latur,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Maharastra(Pdf)/MAU, Parbhani/Maharashtra 28 -Latur- 31-12-2011.pdf",district,2026-07-03
+mh_dharashiv,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Maharastra(Pdf)/MAU, Parbhani/Maharashtra 30-Osmanabad- 31-12-2011.pdf",district,2026-07-03
+mh_jalna,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Maharastra(Pdf)/MAU, Parbhani/Maharashtra 33-Jalna-31-12-2011.pdf",district,2026-07-03
+mh_parbhani,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Maharastra(Pdf)/MAU, Parbhani/Maharashtra 31-Parbhani- 31-12-2011.pdf",district,2026-07-03
+mh_hingoli,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Maharastra(Pdf)/MAU, Parbhani/Maharashtra 32-Hingoli- 31-12-2011.pdf",district,2026-07-03
+mh_nanded,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Maharastra(Pdf)/MAU, Parbhani/Maharashtra 29-Nanded- 31-12-2011.pdf",district,2026-07-03
+ka_kalaburagi,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Karnataka (Pdf)/UAS, Raichur/KA8-Gulbarga 3.2.2011.pdf",district,2026-07-03
+ka_vijayapura,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Karnataka (Pdf)/UAS, Dharward/KA6-Bijapur 3.2.2011.pdf",district,2026-07-03
+ka_bidar,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Karnataka (Pdf)/UAS, Raichur/KA4-Bidar 31.1.2011.pdf",district,2026-07-03
+rj_barmer,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Rajastan (Pdf)/RAU, Bikaner/RAJ10-Barmer-9.3.2012.pdf",district,2026-07-03
+rj_jaisalmer,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Rajastan (Pdf)/RAU, Bikaner/RAJ14-Jaiselmer-9.3.2012.pdf",district,2026-07-03
+rj_jodhpur,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Rajastan (Pdf)/RAU, Bikaner/RAJ16-Jodhpur-9.3.2012.pdf",district,2026-07-03
+gj_kutch,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Gujarat (Pdf)/SKDAU,Banasakantha/GUJ 8-Kutch 30.04.2011.pdf",district,2026-07-03
+gj_banaskantha,icar_contingency_plan,"https://www.icar-crida.res.in/CP-2012/statewiseplans/Gujarat (Pdf)/SKDAU,Banasakantha/GUJ1-Banaskantha 3.2.2011.pdf",district,2026-07-03
+mp_chhatarpur,icar_contingency_plan,"https://www.icar-crida.res.in/CP/madhya%20pradesh/MP37_Chhatarpur_30.05.2013.pdf",district,2026-07-03
+mp_sagar,icar_contingency_plan,"https://www.icar-crida.res.in/CP/madhya%20pradesh/MP29_Sagar_20.05.2013.pdf",district,2026-07-03
+cg_mahasamund,icar_contingency_plan,"https://www.icar-crida.res.in/CP/Chattisgarh/CHH16-Mahasamund%20draft%20plan-10.07.14.pdf",district,2026-07-03
+up_chitrakoot,icar_contingency_plan,"https://www.icar-crida.res.in/CP/Uttar_Pradesh/UP38-Chitrakut%20draft%20plan-10.07.14.pdf",district,2026-07-03
+up_banda,icar_contingency_plan,"https://www.icar-crida.res.in/CP/Uttar_Pradesh/UP37-Banda%20draft%20plan-10.07.14.pdf",district,2026-07-03
+br_gaya,icar_contingency_plan,"https://www.icar-crida.res.in/CP/Bihar/BR17_Gaya%20_28.12.2013.pdf",district,2026-07-03
+jh_palamu,icar_contingency_plan,"https://www.icar-crida.res.in/CP/Jharkhand/JKD3_Palamau_30.09.2013.pdf",district,2026-07-03

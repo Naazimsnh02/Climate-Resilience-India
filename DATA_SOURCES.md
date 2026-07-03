@@ -131,6 +131,39 @@ The claim that ~150-200 districts are on priority watch for the 2026 El Niño mo
 - Loader uses `WRITE_TRUNCATE` (each run replaces the whole snapshot) unlike the Tier 1 scripts' `WRITE_APPEND`, since this isn't a time series — re-run `load_tier2_seed.py` after editing the seed CSVs to refresh.
 - Per-row `source_url` is preserved in each table for the explainability/provenance requirement in `PLAN.md` section 5.
 
+## RAG corpus: ICAR-CRIDA District Agriculture Contingency Plans (2026-07-03)
+
+Real, government-authored per-district PDFs for the Farmer Advisory Agent's RAG corpus (PLAN.md
+section 4/6), replacing "not yet started" — full index found at
+`icar-crida.res.in/CP-2012/district.html` (2011-2012 revisions) and `icar-crida.res.in/CP/<State>/`
+(2013-2014 revisions, superseding some of the same districts). Findings:
+
+- **23/23 seed districts matched district-exact** — no regional/state-level fallback needed.
+  The CP-2012 index alone only covered 17/23 (missing `mp_chhatarpur`, `mp_sagar`,
+  `cg_mahasamund`, `up_chitrakoot`, `up_banda`, `br_gaya`); all 6 turned up in the newer `/CP/`
+  directory once searched individually — ICAR revised/added plans there in 2013-2014 for
+  districts not in the original 2011-2012 batch.
+- **URL structure is inconsistent and not guessable** — mixes `CP-2012/statewiseplans/<State>
+  (Pdf)/<University>/<file>.pdf` (old) and `CP/<State>/<file>.pdf` (new), with erratic spacing/
+  capitalization in filenames (e.g. `"Maharashtra 28 -Latur- 31-12-2011.pdf"`). Anyone
+  extending this corpus should search per-district rather than assume a filename pattern.
+  jh_palamu specifically 404'd on its CP-2012 URL (`JKD3-Palamu-28.08.12.pdf`) — the working
+  file was a 2013 revision at a different path (`CP/Jharkhand/JKD3_Palamau_30.09.2013.pdf`).
+- **No TLS/auth issues** — plain `requests.get()` with a browser User-Agent worked for every
+  URL; unlike data.gov.in, no undocumented WAF or rate limiting encountered.
+- Manifest: `data-collection/seed/rag_corpus_manifest.csv` (district_id, source_url,
+  granularity, retrieved_date). Staged via `data-collection/ingestion/upload_rag_corpus.py` to
+  `gs://climate-resilience-in-raw/rag-corpus/{district_id}/`, indexed in a Vertex AI Search
+  (Discovery Engine) data store `crop-advisory-corpus` + search app `crop-advisory-search`
+  (`global` location, `CONTENT_REQUIRED` unstructured PDF store). Confirmed live: a direct
+  Discovery Engine search query returned `totalSize: 23` with real snippets citing the correct
+  per-district PDF.
+- **No documented server-side filter for GCS folder path** on a `CONTENT_REQUIRED` data store —
+  `agents/farmer_advisory_agent/tools.py`'s `search_advisory_corpus` scopes results to the
+  queried district by checking the returned document's GCS `link` contains
+  `rag-corpus/{district_id}/`, rather than trusting query relevance alone to avoid cross-
+  district bleed in the response.
+
 ## Sources
 - [IMD API reference](https://api.imd.gov.in/public/api_reference.html)
 - [data.gov.in Rainfall catalog](https://www.data.gov.in/catalog/rainfall)
