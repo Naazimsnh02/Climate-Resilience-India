@@ -105,14 +105,41 @@ and long-term roadmap, `DATA_SOURCES.md` for data source findings/caveats.
   or forecast alone without checking `get_crop_advisory`, fall back to "consult local Krishi
   Vigyan Kendra" when confidence is low.
 
+**Backend API (`backend/`, 2026-07-03)**
+- FastAPI app, local dev via `uvicorn backend.main:app --reload --port 8080`.
+- `backend/routers/districts.py` — read-only, non-agentic BigQuery reads for the admin console
+  map/drill-down: `GET /api/districts` (all 23 districts, latest risk score, lat/lon for the
+  map) and `GET /api/districts/{district_id}` (full drill-down: risk + explanation
+  attributions + every underlying signal with its `as_of` string, mirroring the provenance
+  requirement in PLAN.md section 5). Verified live against BigQuery — both endpoints tested
+  end-to-end (Hingoli drill-down returns correct risk_score, attributions, and per-signal
+  as-of stamps).
+- `backend/routers/chat.py` + `backend/agent_runner.py` — one POST route per agent
+  (`/api/chat/triage`, `/api/chat/allocation`, `/api/chat/farmer_advisory`), each wrapping an
+  ADK `InMemoryRunner` (one runner per agent, reused across requests; sessions keyed by
+  `(agent_name, session_id)`, in-memory only — lost on restart, fine for the hackathon demo).
+  Returns `{reply, session_id, tool_calls}` — `tool_calls` surfaces which BigQuery-backed tool
+  fired, for a debug/explainability view in the frontend later.
+- Verified end-to-end: POST to `/api/chat/triage` correctly reached the Gemini call and
+  triggered a real ADK tool-call flow; got a `429 RESOURCE_EXHAUSTED` from the free-tier
+  20-req/day Gemini quota (same limit already documented above for
+  `generate_crop_advisory.py`), confirming the routing/session/runner wiring is correct — the
+  quota, not the backend, is the blocker. Re-verify a full reply once quota resets or by
+  switching the agents to the Vertex AI backend (`genai.Client(vertexai=True, ...)`, billed
+  against `climate-resilience-in`) the way `generate_crop_advisory.py` already does.
+- CORS wide open (`allow_origins=["*"]`) since the frontend's dev port isn't fixed yet —
+  tighten before any real deployment.
+- Not yet done: Cloud Run deployment (Dockerfile/deploy config), auth/IAM separation between
+  admin and farmer-facing endpoints (PLAN.md section 2's "Identity/IAM" line item).
+
 ### Not started
 - Full Vertex AI Search RAG corpus (crop advisory PDFs, MGNREGA guidelines, drought playbooks) — deferred in favor of the Gemini+Search-generated `crop_advisory` table above
-- Backend API (Cloud Run)
+- Backend deployment to Cloud Run (API itself is built and locally verified — see above)
 - Frontend (admin console map/drill-down, farmer chat UI, Looker Studio embed)
 - Cloud Translation / localization (all agents still English-only, plain text)
 - Cloud Functions / Scheduler automation for recurring ingestion (all pulls currently run manually via `data-collection/run_all.py`)
 
 ## Next up
-1. Backend API (Cloud Run) to expose all three agents + risk endpoints to a frontend
-2. Frontend (admin console map/drill-down, farmer chat UI)
+1. Frontend (admin console map/drill-down, farmer chat UI) wired to the now-live `backend/` API
+2. Deploy `backend/` to Cloud Run
 3. Full Vertex AI Search RAG corpus, if time allows, as an upgrade over the curated `crop_advisory` table

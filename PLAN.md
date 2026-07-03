@@ -158,7 +158,7 @@ All three share the same underlying `district_risk_score` table so the story is 
 3. **Risk model** ✅ (baseline) — BigQuery ML linear regression baseline live (`data-collection/modeling/build_risk_model.py`), `district_risk_score` populated with `ML.EXPLAIN_PREDICT` attributions. This is a calibrated composite index dressed as ML, not a validated predictive model — see the long-term roadmap below for what "real" looks like.
 4. **RAG corpus**: not yet started — collect crop advisory PDFs (ICAR, state agri dept), MGNREGA drought-works guidelines, past drought response playbooks → Vertex AI Search index
 5. **Agents**: all three built, ADK + Gemini 2.5 Flash — Triage Agent ✅ (get_risk_score, list_top_risk_districts, get_historical_analog), Allocation Agent ✅ (allocate_resources), Farmer Advisory Agent ✅ (get_risk_score, get_rainfall_forecast, get_crop_advisory).
-6. **Backend API**: not yet started — Cloud Run service exposing agent endpoints + risk data endpoints
+6. **Backend API**: ✅ built (`backend/`, FastAPI), verified locally end-to-end 2026-07-03 — `GET /api/districts`, `GET /api/districts/{id}` (BigQuery reads), `POST /api/chat/{triage,allocation,farmer_advisory}` (ADK `InMemoryRunner` per agent). Not yet deployed to Cloud Run.
 7. **Frontend**: admin console (map + drill-down, Looker Studio embed or custom React map with district choropleth) + farmer chat UI
 8. **Localization**: Cloud Translation for at least 2-3 languages matching flagged districts (Hindi, Marathi, Kannada)
 9. **Demo narrative**: seed with real current data (today's rainfall deficit, current reservoir %), walk through one flagged district end-to-end — risk detected → admin allocates resources → farmer gets sowing advice — closing the full decision loop
