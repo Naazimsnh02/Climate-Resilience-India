@@ -67,15 +67,52 @@ and long-term roadmap, `DATA_SOURCES.md` for data source findings/caveats.
 - Agent instructions require surfacing every discount/cap/exclusion as an explicit trade-off,
   not a silent adjustment (PLAN.md §5 explainability requirement).
 
+**Rainfall forecast (`weather_forecast` table, 2026-07-03)**
+- `data-collection/ingestion/weather_forecast.py` — OpenWeatherMap's free 5-day/3-hour
+  `/forecast` endpoint (same key as `weather_current.py`), aggregated into daily buckets
+  (`expected_rain_mm`, `max_precip_probability`). This is the only genuinely forward-looking
+  rainfall signal in the pipeline — CHIRPS/GEE precipitation is a ~1-month-lagged satellite
+  estimate of the past, not a forecast. `WRITE_TRUNCATE` (rolling snapshot). 138 rows loaded
+  across 23 districts.
+
+**Farmer Advisory Agent (`agents/farmer_advisory_agent/`)**
+- Built on ADK + Gemini 2.5 Flash. Tools: `get_risk_score` (reused from Triage Agent — same
+  underlying model), `get_rainfall_forecast` ✅, `get_crop_advisory` ✅ — all verified
+  end-to-end against BigQuery 2026-07-03.
+- **RAG-corpus decision (2026-07-03)**: PLAN.md originally called for Vertex AI Search RAG
+  over crop advisory/scheme docs. Deferred — no real document corpus collected yet. Instead,
+  `data-collection/ingestion/generate_crop_advisory.py` generates citation-backed advisory
+  rules via **Gemini + Google Search grounding** (not hand-research, not Claude WebSearch) —
+  one call per district, asking for real ICAR/state agri-dept contingency-plan guidance
+  (e.g. Latur: "complete soybean sowing by July 25, avoid fresh sowing beyond that" /
+  "if cotton sowing delayed past July 23-29, switch to indigenous varieties and prefer tur").
+  Every claimed `source_url` is cross-checked against the actual grounded search results
+  (`grounding_metadata.grounding_chunks`); mismatches are replaced with a real grounded URL
+  and flagged `verified_grounded=False` rather than trusted blindly. Upgrade path to full
+  Vertex AI Search RAG once real advisory PDFs are collected.
+- **Free-tier quota hit mid-run**: the Gemini Developer API key caps at 20 requests/day/model,
+  not enough for 23 districts in one run. Switched to calling Gemini via the **Vertex AI
+  backend** (`genai.Client(vertexai=True, project=...)`), billed against the already-linked
+  GCP project instead of the free AI Studio quota — script supports `--retry-missing` to
+  backfill only districts not yet in the seed CSV, used to fill in the remaining districts
+  across two follow-up runs.
+- All 23 districts now have ≥1 advisory rule (62 rows total in `crop_advisory`); verification
+  rate varies per-district/per-call (inherent non-determinism in whether a given Gemini call's
+  grounding chunks line up with its cited text) — this is treated as real signal, not a bug,
+  and surfaced to the agent/user via `verified_grounded` rather than smoothed over.
+- Agent instructions enforce responsible-AI framing: always cite source_url, flag
+  unverified-grounded rules, never give a sowing/crop-switch recommendation from risk_score
+  or forecast alone without checking `get_crop_advisory`, fall back to "consult local Krishi
+  Vigyan Kendra" when confidence is low.
+
 ### Not started
-- Farmer Advisory Agent (PLAN.md §4)
-- RAG corpus (crop advisory PDFs, MGNREGA guidelines, drought playbooks) + Vertex AI Search index
+- Full Vertex AI Search RAG corpus (crop advisory PDFs, MGNREGA guidelines, drought playbooks) — deferred in favor of the Gemini+Search-generated `crop_advisory` table above
 - Backend API (Cloud Run)
 - Frontend (admin console map/drill-down, farmer chat UI, Looker Studio embed)
-- Cloud Translation / localization
+- Cloud Translation / localization (all agents still English-only, plain text)
 - Cloud Functions / Scheduler automation for recurring ingestion (all pulls currently run manually via `data-collection/run_all.py`)
 
 ## Next up
-1. Farmer Advisory Agent — RAG over crop advisory/scheme docs + `get_risk_score` (PLAN.md §4)
-2. Backend API (Cloud Run) to expose agent + risk endpoints to a frontend
-3. RAG corpus (crop advisory PDFs, MGNREGA guidelines, drought playbooks) + Vertex AI Search index
+1. Backend API (Cloud Run) to expose all three agents + risk endpoints to a frontend
+2. Frontend (admin console map/drill-down, farmer chat UI)
+3. Full Vertex AI Search RAG corpus, if time allows, as an upgrade over the curated `crop_advisory` table

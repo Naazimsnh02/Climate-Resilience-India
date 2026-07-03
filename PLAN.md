@@ -132,10 +132,11 @@ Both consume the same **Decision Intelligence Core**: ingestion → risk model �
 - Tool: `allocate_resources(total_units, resource_name, scope_state, scope_belt, district_ids)` — deterministic, non-LLM allocation (risk-proportional, discounted for districts with a real supply-side relief signal already in `district_features_latest`, capped at 30%/district, largest-remainder rounding), not an LLM decision, so it's auditable
 - Output: allocation table + rationale, flags trade-offs (e.g. "Vijayapura deprioritized despite high risk because its reservoir is already at 77% full" — grounded in real fields, not a fabricated "upstream release" signal)
 
-**Farmer Advisory Agent** (citizen-facing)
+**Farmer Advisory Agent** (citizen-facing) — ✅ built (`agents/farmer_advisory_agent/`, ADK + Gemini 2.5 Flash), verified end-to-end 2026-07-03
 - Input: free text/voice, village or district context
-- Tools: RAG over crop advisory + government scheme docs (Vertex AI Search), `get_risk_score`, `get_rainfall_forecast`
-- Output: plain-language, localized answer with confidence and source citation; falls back to "consult local agri officer" when confidence is low — important for responsible AI framing
+- Tools: `get_risk_score` ✅ (reused from Triage Agent), `get_rainfall_forecast` ✅ wired to a new `weather_forecast` table (OpenWeatherMap 5-day forecast — the only genuinely forward-looking rainfall signal in the system), `get_crop_advisory` ✅ wired to a new `crop_advisory` table
+- **RAG substitution**: full Vertex AI Search RAG over crop advisory/scheme docs was deferred — no real document corpus collected yet. Instead `data-collection/ingestion/generate_crop_advisory.py` generates citation-backed advisory rules via Gemini + Google Search grounding (one call per district), with every claimed source URL cross-checked against the actual grounded search results rather than trusted blindly. Upgrade path to full Vertex AI Search RAG once real advisory PDFs are collected.
+- Output: plain-language answer with confidence and source citation; falls back to "consult local Krishi Vigyan Kendra/agri officer" when confidence is low or an advisory rule is unverified — important for responsible AI framing. Localization (Cloud Translation) not yet built — English only.
 
 All three share the same underlying `district_risk_score` table so the story is consistent: one model, multiple decision surfaces.
 
@@ -156,7 +157,7 @@ All three share the same underlying `district_risk_score` table so the story is 
 2. **Warehouse** ✅ — BigQuery schema above live in `raw_data` (`climate-resilience-in` project), `district_master` loaded for 23 seed districts.
 3. **Risk model** ✅ (baseline) — BigQuery ML linear regression baseline live (`data-collection/modeling/build_risk_model.py`), `district_risk_score` populated with `ML.EXPLAIN_PREDICT` attributions. This is a calibrated composite index dressed as ML, not a validated predictive model — see the long-term roadmap below for what "real" looks like.
 4. **RAG corpus**: not yet started — collect crop advisory PDFs (ICAR, state agri dept), MGNREGA drought-works guidelines, past drought response playbooks → Vertex AI Search index
-5. **Agents**: Triage Agent ✅ (get_risk_score, list_top_risk_districts, get_historical_analog) and Allocation Agent ✅ (allocate_resources) built, ADK + Gemini 2.5 Flash. Farmer Advisory Agent not yet built.
+5. **Agents**: all three built, ADK + Gemini 2.5 Flash — Triage Agent ✅ (get_risk_score, list_top_risk_districts, get_historical_analog), Allocation Agent ✅ (allocate_resources), Farmer Advisory Agent ✅ (get_risk_score, get_rainfall_forecast, get_crop_advisory).
 6. **Backend API**: not yet started — Cloud Run service exposing agent endpoints + risk data endpoints
 7. **Frontend**: admin console (map + drill-down, Looker Studio embed or custom React map with district choropleth) + farmer chat UI
 8. **Localization**: Cloud Translation for at least 2-3 languages matching flagged districts (Hindi, Marathi, Kannada)
