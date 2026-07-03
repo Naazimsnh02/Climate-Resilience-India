@@ -37,15 +37,38 @@ and long-term roadmap, `DATA_SOURCES.md` for data source findings/caveats.
 
 **Triage Agent (`agents/triage_agent/`)**
 - Built on ADK + Gemini 2.5 Flash.
-- Tools: `get_risk_score(district_id)` (accepts canonical id or plain district name, resolved via
-  `district_master`) and `list_top_risk_districts(limit)`, both reading `district_risk_score` joined
-  against `district_features_latest`.
+- Tools: `get_risk_score(district_id)`, `list_top_risk_districts(limit)`, and
+  `get_historical_analog(district_id)` (accepts canonical id or plain district name, resolved via
+  `district_master`), reading `district_risk_score`/`district_features_latest` and the new
+  `historical_drought_years` table.
 - Verified end-to-end with a live Gemini call via `GOOGLE_API_KEY` — correctly calls `get_risk_score`,
   cites reservoir/groundwater/soil-moisture drivers, and states the drought bulletin status.
-- Not yet built: `query_bigquery(sql)` (raw passthrough tool), `get_historical_analog(district_id)`.
+- Not yet built: `query_bigquery(sql)` (raw passthrough tool).
+
+**Historical drought years (`historical_drought_years` table, 2026-07-03)**
+- WebSearch-researched, citation-backed CSV (`data-collection/seed/historical_drought_years.csv`,
+  loaded via `load_historical_drought_years.py`, `WRITE_TRUNCATE`) — real past drought years per
+  seed district (e.g. Marathwada 2012-13/2014-15/2015-16/2018-19, Rajasthan chronic recurrence,
+  Bundelkhand 2004-08/2015-16), not fabricated. Same `granularity` convention as Tier 2
+  (district vs. regional) — several districts (Kalaburagi, Vijayapura, Bidar, Chitrakoot, Banda)
+  only have region-wide sourcing, not district-exact years.
+
+**Allocation Agent (`agents/allocation_agent/`)**
+- Built on ADK + Gemini 2.5 Flash. Tool: `allocate_resources(total_units, resource_name,
+  scope_state, scope_belt, district_ids)`.
+- Deterministic (non-LLM) allocation algorithm so it's auditable: proportional to risk_score,
+  discounted 0.6x for districts with a real supply-side relief signal already in
+  `district_features_latest` (reservoir_pct_full > 40% or groundwater_trend='rising'), capped at
+  30% of the pool per district, largest-remainder rounding so allocations sum exactly to the
+  requested total.
+- Verified against BigQuery: Marathwada-scoped 50-tanker request and all-district 100-tanker
+  request both produce correct sums and real discount/cap trade-off narratives (e.g. Vijayapura,
+  Sagar, Kutch discounted for reservoirs already >40% full).
+- Agent instructions require surfacing every discount/cap/exclusion as an explicit trade-off,
+  not a silent adjustment (PLAN.md §5 explainability requirement).
 
 ### Not started
-- Allocation Agent, Farmer Advisory Agent (PLAN.md §4)
+- Farmer Advisory Agent (PLAN.md §4)
 - RAG corpus (crop advisory PDFs, MGNREGA guidelines, drought playbooks) + Vertex AI Search index
 - Backend API (Cloud Run)
 - Frontend (admin console map/drill-down, farmer chat UI, Looker Studio embed)
@@ -53,6 +76,6 @@ and long-term roadmap, `DATA_SOURCES.md` for data source findings/caveats.
 - Cloud Functions / Scheduler automation for recurring ingestion (all pulls currently run manually via `data-collection/run_all.py`)
 
 ## Next up
-1. `get_historical_analog(district_id)` tool for the Triage Agent (PLAN.md §4)
-2. Allocation Agent — constraint-aware tanker/budget allocation, reusing `district_risk_score`
-3. Backend API (Cloud Run) to expose agent + risk endpoints to a frontend
+1. Farmer Advisory Agent — RAG over crop advisory/scheme docs + `get_risk_score` (PLAN.md §4)
+2. Backend API (Cloud Run) to expose agent + risk endpoints to a frontend
+3. RAG corpus (crop advisory PDFs, MGNREGA guidelines, drought playbooks) + Vertex AI Search index

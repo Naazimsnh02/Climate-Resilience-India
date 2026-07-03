@@ -100,6 +100,61 @@ def get_risk_score(district_id: str) -> dict:
     }
 
 
+def get_historical_analog(district_id: str) -> dict:
+    """Gets past notable drought years for a district, for historical-analog framing
+    (e.g. "this district's current risk profile resembles its 2015-16 drought").
+
+    Sourced from WebSearch research with citations (CWC/CGWB/NRSC portals aren't
+    scrapable - see DATA_SOURCES.md), not a live feed. Some rows are `regional`
+    granularity (nearest district/division-wide figure) rather than district-exact;
+    always surface `granularity` alongside the years, same convention as reservoir/
+    groundwater data.
+
+    Args:
+        district_id: Canonical district_id (e.g. "mh_latur") or a plain district name (e.g. "Latur").
+
+    Returns:
+        A dict with district_id, name, historical_drought_years (list of year/year-range
+        strings, most recent first), granularity ("district" or "regional"), notes, and
+        source_url. Returns {"error": ...} if the district isn't found or has no historical
+        record seeded yet.
+    """
+    resolved_id = _resolve_district_id(district_id)
+    if resolved_id is None:
+        return {"error": f"No district found matching '{district_id}'."}
+
+    query = f"""
+        SELECT m.district_id, m.name, h.historical_drought_years, h.granularity,
+               h.notes, h.source_url
+        FROM `{T}.district_master` m
+        LEFT JOIN `{T}.historical_drought_years` h ON h.district_id = m.district_id
+        WHERE m.district_id = @district_id
+    """
+    job = client().query(
+        query,
+        job_config=bigquery.QueryJobConfig(
+            query_parameters=[bigquery.ScalarQueryParameter("district_id", "STRING", resolved_id)]
+        ),
+    )
+    rows = list(job.result())
+    if not rows:
+        return {"error": f"District '{resolved_id}' not found."}
+
+    r = rows[0]
+    if not r.historical_drought_years:
+        return {"error": f"No historical drought-year record seeded yet for '{r.name}'."}
+
+    years = r.historical_drought_years.split(";")
+    return {
+        "district_id": r.district_id,
+        "name": r.name,
+        "historical_drought_years": list(reversed(years)),
+        "granularity": r.granularity,
+        "notes": r.notes,
+        "source_url": r.source_url,
+    }
+
+
 def list_top_risk_districts(limit: int = 20) -> dict:
     """Lists the districts with the highest current El Nino 2026 drought/monsoon risk score.
 

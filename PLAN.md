@@ -124,13 +124,13 @@ Both consume the same **Decision Intelligence Core**: ingestion → risk model �
 
 **Triage Agent** (admin-facing) — ✅ built (`agents/triage_agent/`, ADK + Gemini 2.5 Flash), verified end-to-end 2026-07-03
 - Input: "show me top 20 districts at risk" or map click
-- Tools: `get_risk_score(district_id)` ✅ wired to `district_risk_score`, `list_top_risk_districts(limit)` ✅ wired, `query_bigquery(sql)` and `get_historical_analog(district_id)` — not yet built
+- Tools: `get_risk_score(district_id)` ✅, `list_top_risk_districts(limit)` ✅, `get_historical_analog(district_id)` ✅ wired to a new WebSearch-researched, citation-backed `historical_drought_years` table; `query_bigquery(sql)` — not yet built
 - Output: ranked list with the *why* — rainfall deficit %, reservoir days-remaining, historical analog year (e.g., "similar to 2015-16 drought in this district")
 
-**Allocation Agent** (admin-facing)
+**Allocation Agent** (admin-facing) — ✅ built (`agents/allocation_agent/`, ADK + Gemini 2.5 Flash), verified end-to-end 2026-07-03
 - Input: "I have 50 water tankers, allocate across Marathwada"
-- Tools: same BigQuery access + a constraint-satisfaction/optimization step (can be a simple greedy/linear allocation in Python called as a tool, not necessarily ML)
-- Output: allocation table + rationale, flags trade-offs ("District X deprioritized despite high risk because reservoir refill is expected from upstream release")
+- Tool: `allocate_resources(total_units, resource_name, scope_state, scope_belt, district_ids)` — deterministic, non-LLM allocation (risk-proportional, discounted for districts with a real supply-side relief signal already in `district_features_latest`, capped at 30%/district, largest-remainder rounding), not an LLM decision, so it's auditable
+- Output: allocation table + rationale, flags trade-offs (e.g. "Vijayapura deprioritized despite high risk because its reservoir is already at 77% full" — grounded in real fields, not a fabricated "upstream release" signal)
 
 **Farmer Advisory Agent** (citizen-facing)
 - Input: free text/voice, village or district context
@@ -156,7 +156,7 @@ All three share the same underlying `district_risk_score` table so the story is 
 2. **Warehouse** ✅ — BigQuery schema above live in `raw_data` (`climate-resilience-in` project), `district_master` loaded for 23 seed districts.
 3. **Risk model** ✅ (baseline) — BigQuery ML linear regression baseline live (`data-collection/modeling/build_risk_model.py`), `district_risk_score` populated with `ML.EXPLAIN_PREDICT` attributions. This is a calibrated composite index dressed as ML, not a validated predictive model — see the long-term roadmap below for what "real" looks like.
 4. **RAG corpus**: not yet started — collect crop advisory PDFs (ICAR, state agri dept), MGNREGA drought-works guidelines, past drought response playbooks → Vertex AI Search index
-5. **Agents**: Triage Agent ✅ built (get_risk_score, list_top_risk_districts, ADK + Gemini 2.5 Flash). Allocation Agent and Farmer Advisory Agent not yet built.
+5. **Agents**: Triage Agent ✅ (get_risk_score, list_top_risk_districts, get_historical_analog) and Allocation Agent ✅ (allocate_resources) built, ADK + Gemini 2.5 Flash. Farmer Advisory Agent not yet built.
 6. **Backend API**: not yet started — Cloud Run service exposing agent endpoints + risk data endpoints
 7. **Frontend**: admin console (map + drill-down, Looker Studio embed or custom React map with district choropleth) + farmer chat UI
 8. **Localization**: Cloud Translation for at least 2-3 languages matching flagged districts (Hindi, Marathi, Kannada)
