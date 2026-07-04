@@ -79,7 +79,7 @@ export function Counter({ to, suffix = "", prefix = "", decimals = 0, duration =
 export function SectionHeading({ eyebrow, title, description, align = "center" }) {
   return (
     <Reveal
-      className={`mx-auto max-w-2xl ${align === "center" ? "text-center" : "text-left"}`}
+      className={`mx-auto max-w-3xl ${align === "center" ? "text-center" : "text-left"}`}
     >
       {eyebrow && <div className={align === "center" ? "flex justify-center" : ""}><Eyebrow>{eyebrow}</Eyebrow></div>}
       <h2 className="mt-5 text-[32px] font-bold leading-[1.15] text-white sm:text-[40px]">

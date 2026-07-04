@@ -19,12 +19,14 @@ import {
   ScrollText,
   ShieldCheck,
   Radar,
-  Satellite,
-  ChevronRight,
 } from "lucide-react";
 import "../landing.css";
 import HeroArt from "../components/landing/HeroArt";
+import DistrictMap from "../components/DistrictMap";
+import { useAppState } from "../context/AppState";
 import { Counter, Eyebrow, GlassCard, GradientBlob, Reveal, SectionHeading } from "../components/landing/primitives";
+
+const GITHUB_URL = "https://github.com/Naazimsnh02/Climate-Resilience-India";
 
 const TECH = [
   "Google Cloud",
@@ -42,7 +44,7 @@ const PROBLEMS = [
     icon: CloudRain,
     title: "Extreme rainfall uncertainty",
     body:
-      "El Niño years scramble the monsoon signal — the same district can swing from a delayed onset to a flash-flood week within a single season, and averages hide the swing entirely.",
+      "El Niño years scramble the monsoon signal: the same district can swing from a delayed onset to a flash-flood week within a single season, and averages hide the swing entirely.",
   },
   {
     icon: Droplets,
@@ -54,7 +56,7 @@ const PROBLEMS = [
     icon: Wheat,
     title: "Agricultural losses",
     body:
-      "Sowing windows are decided on habit, not on soil moisture trend lines — a wrong call on delay-sowing advisories compounds into yield loss that surfaces only at harvest.",
+      "Sowing windows are decided on habit, not on soil moisture trend lines, so a wrong call on delay-sowing advisories compounds into yield loss that surfaces only at harvest.",
   },
 ];
 
@@ -68,7 +70,7 @@ const PIPELINE = [
 ];
 
 const FEATURES = [
-  { icon: ScrollText, title: "Explainable AI", body: "Every recommendation ships with its confidence, its reasoning chain and the exact records it drew from — nothing is a black box." },
+  { icon: ScrollText, title: "Explainable AI", body: "Every recommendation ships with its confidence, its reasoning chain and the exact records it drew from, so nothing is a black box." },
   { icon: Map, title: "District Risk Maps", body: "Live choropleth of drought-risk scores across every district, updated as new signals land." },
   { icon: Droplets, title: "Reservoir Forecasting", body: "Days-to-critical projections per reservoir, so water releases can be timed before a crisis, not during one." },
   { icon: Wheat, title: "Crop Advisory", body: "Soil-moisture-aware sowing guidance, including when to promote millet and other short-duration crops." },
@@ -111,7 +113,7 @@ const ARCHITECTURE = [
 ];
 
 const EXPLAIN = [
-  { icon: Gauge, title: "Confidence", body: "A calibrated score, not a false sense of certainty — low-confidence calls are flagged, not hidden." },
+  { icon: Gauge, title: "Confidence", body: "A calibrated score, not a false sense of certainty: low-confidence calls are flagged, not hidden." },
   { icon: BrainCircuit, title: "Reasoning", body: "The chain of signals that led to the recommendation, laid out in the order the agent weighed them." },
   { icon: Database, title: "Data Sources", body: "The exact rainfall, reservoir and soil-moisture records behind the number, timestamped." },
   { icon: BookOpenText, title: "Supporting Documents", body: "The advisory or SOP passage retrieved by Vertex AI Search, quoted, not paraphrased." },
@@ -126,6 +128,7 @@ export default function LandingPage() {
       <Hero navigate={navigate} />
       <TrustedTech />
       <Problem />
+      <SectionDivider />
       <HowItWorks />
       <Features />
       <DashboardPreview navigate={navigate} />
@@ -141,11 +144,9 @@ export default function LandingPage() {
 function NavBar({ navigate }) {
   return (
     <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-[#08111f]/75 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2.5">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#00c8ff] to-[#00e5a8]">
-            <Satellite className="h-4.5 w-4.5 text-[#08111f]" strokeWidth={2.4} />
-          </div>
+          <img src="/logo_transparent.png" alt="Climate Resilience India" className="h-9 w-9 object-contain" />
           <span className="font-display text-[15px] font-bold text-white">
             El Niño 2026 <span className="text-white/40">Copilot</span>
           </span>
@@ -169,7 +170,7 @@ function NavBar({ navigate }) {
 
 function Hero({ navigate }) {
   return (
-    <section className="relative overflow-hidden px-6 pb-24 pt-16 sm:pt-24">
+    <section className="relative overflow-hidden px-6 pb-24 pt-8 sm:pt-12">
       <GradientBlob tone="primary" className="-left-32 -top-32 h-[420px] w-[420px]" />
       <GradientBlob tone="secondary" className="-right-40 top-40 h-[380px] w-[380px]" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
@@ -180,16 +181,16 @@ function Hero({ navigate }) {
             </Eyebrow>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="mt-6 text-[42px] font-extrabold leading-[1.08] text-white sm:text-[56px] lg:text-[60px]">
+            <h1 className="mt-4 text-[42px] font-extrabold leading-[1.08] text-white sm:text-[56px] lg:text-[60px]">
               AI decision intelligence for{" "}
               <span className="text-gradient">India's climate resilience</span>
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
-            <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-white/60 sm:text-[18px]">
+            <p className="mt-4 max-w-xl text-[17px] leading-relaxed text-white/60 sm:text-[18px]">
               Prepare for the 2026 El Niño crisis with explainable, AI-powered
-              recommendations for district administrators and farmers — every
-              call backed by its data, its reasoning, and its confidence.
+              recommendations for district administrators and farmers. Every
+              call is backed by its data, its reasoning and its confidence.
             </p>
           </Reveal>
           <Reveal delay={0.24}>
@@ -288,8 +289,10 @@ function Problem() {
           </div>
         </Reveal>
         <div>
-          <Reveal>
-            <Eyebrow>The problem</Eyebrow>
+          <Reveal className="text-center">
+            <div className="flex justify-center">
+              <Eyebrow>The problem</Eyebrow>
+            </div>
             <h2 className="mt-5 text-[32px] font-bold leading-[1.15] text-white sm:text-[38px]">
               Climate risk in India moves faster than the systems built to track it
             </h2>
@@ -317,34 +320,37 @@ function Problem() {
   );
 }
 
+function SectionDivider() {
+  return (
+    <div className="mx-auto max-w-5xl px-6">
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-[#00c8ff]/60 to-[#00e5a8]/60" />
+    </div>
+  );
+}
+
 function HowItWorks() {
   return (
     <section id="how-it-works" className="relative px-6 py-28">
       <SectionHeading
         eyebrow="How it works"
         title="From raw signal to a decision, on one pipeline"
-        description="Six stages turn scattered climate data into a ranked, sourced recommendation — automatically, every time new signal lands."
+        description="Six stages turn scattered signals into a ranked, sourced recommendation."
       />
       <div className="relative mx-auto mt-16 max-w-6xl">
         <div className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/15 to-transparent lg:block" />
         <div className="grid gap-5 lg:grid-cols-3">
           {PIPELINE.map((step, i) => (
             <Reveal key={step.title} delay={i * 0.07}>
-              <div className="relative">
-                <GlassCard className="h-full p-6" glow>
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5">
-                      <step.icon className="h-4.5 w-4.5 text-[#00e5a8]" strokeWidth={1.8} />
-                    </div>
-                    <span className="font-mono text-[11px] text-white/35">0{i + 1}</span>
+              <GlassCard className="h-full p-6" glow>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5">
+                    <step.icon className="h-4.5 w-4.5 text-[#00e5a8]" strokeWidth={1.8} />
                   </div>
-                  <h3 className="mt-4 text-[16px] font-semibold text-white">{step.title}</h3>
-                  <p className="mt-1.5 text-[14px] leading-relaxed text-white/55">{step.body}</p>
-                </GlassCard>
-                {i < PIPELINE.length - 1 && (
-                  <ChevronRight className="absolute -right-3 top-1/2 hidden h-6 w-6 -translate-y-1/2 text-white/20 lg:block" />
-                )}
-              </div>
+                  <span className="font-mono text-[11px] text-white/35">0{i + 1}</span>
+                </div>
+                <h3 className="mt-4 text-[16px] font-semibold text-white">{step.title}</h3>
+                <p className="mt-1.5 text-[14px] leading-relaxed text-white/55">{step.body}</p>
+              </GlassCard>
             </Reveal>
           ))}
         </div>
@@ -359,7 +365,7 @@ function Features() {
       <SectionHeading
         eyebrow="Platform"
         title="Everything a decision maker needs, nothing they don't"
-        description="One console for the district administrator's morning briefing and the farmer's field question."
+        description="One console for the administrator's morning briefing and the farmer's field question."
       />
       <div className="mx-auto mt-16 grid max-w-7xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {FEATURES.map((f, i) => (
@@ -379,6 +385,7 @@ function Features() {
 }
 
 function DashboardPreview({ navigate }) {
+  const { districts } = useAppState();
   return (
     <section className="relative overflow-hidden px-6 py-28">
       <GradientBlob tone="primary" className="left-1/2 top-0 h-[500px] w-[700px] -translate-x-1/2 opacity-[0.12]" />
@@ -397,17 +404,13 @@ function DashboardPreview({ navigate }) {
               <span className="ml-3 font-mono text-[11px] text-white/35">copilot.climate-resilience.in/overview</span>
             </div>
             <div className="grid gap-3 p-3 sm:grid-cols-[1.3fr_1fr] sm:p-4">
-              <div className="rounded-xl border border-white/[0.06] bg-[#0c1626] p-4">
+              <div className="flex flex-col rounded-xl border border-white/[0.06] bg-[#0c1626] p-4">
                 <div className="flex items-center justify-between text-[12px] text-white/45">
                   <span>District risk map</span>
                   <span className="flex items-center gap-1 text-[#00e5a8]"><span className="h-1.5 w-1.5 rounded-full bg-[#00e5a8] animate-pulse-soft" /> live</span>
                 </div>
-                <div className="mt-3 grid grid-cols-8 gap-1.5">
-                  {Array.from({ length: 48 }).map((_, i) => {
-                    const seed = (i * 37) % 100;
-                    const color = seed > 70 ? "#ff6a6a" : seed > 45 ? "#ffc857" : seed > 20 ? "#00c8ff" : "#00e5a8";
-                    return <div key={i} className="aspect-square rounded-[3px]" style={{ background: color, opacity: 0.35 + (seed % 40) / 100 }} />;
-                  })}
+                <div className="pointer-events-none relative mt-3 h-[280px] w-full overflow-hidden rounded-lg sm:h-[320px]">
+                  <DistrictMap districts={districts} selectedId={null} onSelect={() => {}} />
                 </div>
               </div>
               <div className="flex flex-col gap-3">
@@ -421,7 +424,7 @@ function DashboardPreview({ navigate }) {
                     <MessagesSquare className="h-3.5 w-3.5 text-[#00c8ff]" /> AI Copilot
                   </div>
                   <p className="mt-2 text-[12.5px] leading-relaxed text-white/70">
-                    "Delay sowing by 8–10 days in Beed — soil moisture is 31%, trending down. Confidence: high."
+                    "Delay sowing by 8-10 days in Beed. Soil moisture is 31%, trending down. Confidence: high."
                   </p>
                 </div>
               </div>
@@ -429,9 +432,10 @@ function DashboardPreview({ navigate }) {
           </div>
           <button
             onClick={() => navigate("/overview")}
-            className="mx-auto mt-8 flex items-center gap-2 text-[14px] font-semibold text-[#00c8ff] transition hover:text-[#7fe6ff]"
+            className="group relative mx-auto mt-10 flex items-center gap-2 rounded-full bg-gradient-to-r from-[#00c8ff] to-[#00e5a8] px-6 py-3 text-[14.5px] font-semibold text-[#08111f] shadow-[0_0_30px_rgba(0,200,255,0.3)] transition-transform hover:scale-[1.03] active:scale-[0.98]"
           >
-            Open the live dashboard <ArrowRight className="h-4 w-4" />
+            Open the live dashboard
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </button>
         </div>
       </Reveal>
@@ -472,7 +476,7 @@ function Architecture() {
       <SectionHeading
         eyebrow="Architecture"
         title="A production Google Cloud stack, end to end"
-        description="Every stage is a managed service — no bespoke infrastructure to babysit during a crisis."
+        description="Every stage is a managed service, with no infrastructure to babysit during a crisis."
       />
       <Reveal delay={0.1}>
         <div className="mx-auto mt-16 max-w-5xl">
@@ -549,7 +553,7 @@ function CTA({ navigate }) {
             Launch Dashboard <ArrowRight className="h-4 w-4" />
           </button>
           <a
-            href="https://github.com"
+            href={GITHUB_URL}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-white/15 px-7 py-3.5 text-[15px] font-semibold text-white/85 transition hover:border-white/30 hover:bg-white/5"
@@ -568,9 +572,7 @@ function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 sm:flex-row">
         <div>
           <div className="flex items-center gap-2.5">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-[#00c8ff] to-[#00e5a8]">
-              <Satellite className="h-4 w-4 text-[#08111f]" strokeWidth={2.4} />
-            </div>
+            <img src="/logo_transparent.png" alt="Climate Resilience India" className="h-8 w-8 object-contain" />
             <span className="text-[14px] font-semibold text-white">El Niño 2026 Decision Copilot</span>
           </div>
           <p className="mt-2 text-[12.5px] text-white/40">
@@ -581,7 +583,7 @@ function Footer() {
           <span className="rounded-full border border-white/10 px-3 py-1.5 text-[11.5px] font-medium">
             Powered by Google Cloud
           </span>
-          <a href="https://github.com" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 transition hover:text-white">
+          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 transition hover:text-white">
             <ExternalLink className="h-3.5 w-3.5" /> GitHub
           </a>
           <a href="#how-it-works" className="transition hover:text-white">Documentation</a>
