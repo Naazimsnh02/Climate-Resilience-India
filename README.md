@@ -48,7 +48,7 @@ The system is built on a **Decision Intelligence Core**: Ingestion → Risk Mode
 Ingestion → Risk Model → Reasoning Agents → Explanation Layer, ending in an auditable decision for district officers and a localized, cited recommendation for farmers.
 
 <p align="center">
-  <img src="docs/Process%20Flow.png" alt="El Niño 2026 Decision Copilot process flow" width="100%">
+  <img src="frontend/public/Process%20Flow.png" alt="El Niño 2026 Decision Copilot process flow" width="100%">
 </p>
 
 ---
@@ -56,7 +56,7 @@ Ingestion → Risk Model → Reasoning Agents → Explanation Layer, ending in a
 ## 🏗️ Architecture
 
 <p align="center">
-  <img src="docs/Architecture%20Diagram.png" alt="El Niño 2026 Decision Copilot architecture diagram" width="100%">
+  <img src="frontend/public/Architecture%20Diagram.png" alt="El Niño 2026 Decision Copilot architecture diagram" width="100%">
 </p>
 
 
