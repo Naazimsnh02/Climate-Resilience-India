@@ -16,11 +16,15 @@ app = FastAPI(
     description="District risk data + agent chat endpoints for the admin console and farmer advisory frontends.",
 )
 
-# Wide open for the hackathon demo (frontend origin/port isn't fixed yet).
-# Tighten to explicit origins before any real deployment.
+# Frontend origins: Firebase Hosting (prod) + Vite local dev (any port —
+# Vite auto-increments past 5173 when it's already taken by another instance).
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://climate-resilience-in.web.app",
+        "https://climate-resilience-in.firebaseapp.com",
+    ],
+    allow_origin_regex=r"http://localhost:\d+",
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],

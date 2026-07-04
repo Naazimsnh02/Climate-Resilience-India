@@ -29,7 +29,10 @@ def main():
     districts = pd.read_csv(SEED_DIR / "district_master.csv")
     now = datetime.now(timezone.utc)
 
-    rows = []
+    # Load per-district as we go (not one batch at the end) - at 763-district scale a
+    # transient API failure or a killed background job shouldn't cost every district
+    # already pulled (same fix as gee_pull.py/mandi_prices.py).
+    pulled = 0
     for _, d in districts.iterrows():
         try:
             data = fetch(d["lat"], d["lon"])
@@ -37,24 +40,20 @@ def main():
             print(f"FAILED for {d['district_id']}: {exc}")
             continue
         main_data = data.get("main", {})
-        rows.append(
-            {
-                "district_id": d["district_id"],
-                "timestamp": now.isoformat(),
-                "temp_c": main_data.get("temp"),
-                "feels_like_c": main_data.get("feels_like"),
-                "humidity_pct": main_data.get("humidity"),
-                "weather_main": (data.get("weather") or [{}])[0].get("main"),
-                "weather_desc": (data.get("weather") or [{}])[0].get("description"),
-                "source": "OpenWeatherMap",
-            }
-        )
+        row = pd.DataFrame([{
+            "district_id": d["district_id"],
+            "timestamp": now.isoformat(),
+            "temp_c": main_data.get("temp"),
+            "feels_like_c": main_data.get("feels_like"),
+            "humidity_pct": main_data.get("humidity"),
+            "weather_main": (data.get("weather") or [{}])[0].get("main"),
+            "weather_desc": (data.get("weather") or [{}])[0].get("description"),
+            "source": "OpenWeatherMap",
+        }])
+        load_dataframe(row, "weather_current", write_disposition="WRITE_APPEND")
+        pulled += 1
 
-    df = pd.DataFrame(rows)
-    if df.empty:
-        print("No rows pulled, skipping BigQuery load.")
-        return
-    load_dataframe(df, "weather_current", write_disposition="WRITE_APPEND")
+    print(f"Loaded {pulled}/{len(districts)} districts.")
 
 
 if __name__ == "__main__":

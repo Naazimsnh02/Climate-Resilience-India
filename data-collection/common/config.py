@@ -7,6 +7,7 @@ ROOT_DIR = Path(__file__).resolve().parents[2]
 load_dotenv(ROOT_DIR / ".env")
 
 DATA_GOV_IN_KEY = os.environ["DATA_GOV_IN"]
+DATA_GOV_IN_NEW_KEY = os.environ["DATA_GOV_IN_NEW"]
 OPENWEATHERMAP_API_KEY = os.environ["OPENWEATHERMAP_API_KEY"]
 GCP_PROJECT = os.environ["GCP_PROJECT"]
 BQ_DATASET = os.environ["BQ_DATASET"]

@@ -76,15 +76,16 @@ def search_advisory_corpus(district_id: str, question: str) -> dict:
     )
     response = _get_search_client().search(request)
 
-    # The data store holds all 23 districts' PDFs; Discovery Engine has no
-    # documented server-side filter for GCS folder path on a content store, so
-    # scope to this district by checking the returned GCS URI contains its
-    # rag-corpus/{district_id}/ prefix rather than trusting query relevance alone.
+    # The data store holds every district's PDF plus national-level scheme docs (e.g.
+    # MGNREGA operational guidelines); Discovery Engine has no documented server-side
+    # filter for GCS folder path on a content store, so scope results to this district's
+    # own rag-corpus/{district_id}/ prefix or the shared rag-corpus/national/ prefix,
+    # rather than trusting query relevance alone.
     results = []
     for result in response.results:
         derived = result.document.derived_struct_data
         link = derived.get("link") if derived else None
-        if not link or f"rag-corpus/{resolved_id}/" not in link:
+        if not link or (f"rag-corpus/{resolved_id}/" not in link and "rag-corpus/national/" not in link):
             continue
         title = derived.get("title") if derived else None
         for s in derived.get("snippets", []) if derived else []:

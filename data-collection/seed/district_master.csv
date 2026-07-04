@@ -1,24 +1,764 @@
 district_id,name,state,lat,lon,flagged_belt,primary_kharif_crops,datagovin_district_name
-mh_sambhajinagar,Chhatrapati Sambhajinagar,Maharashtra,19.8762,75.3433,Marathwada,"cotton,soybean,maize",Aurangabad
-mh_beed,Beed,Maharashtra,18.9894,75.7601,Marathwada,"cotton,soybean,tur",Beed
-mh_latur,Latur,Maharashtra,18.4088,76.5604,Marathwada,"soybean,tur,cotton",Latur
-mh_dharashiv,Dharashiv (Osmanabad),Maharashtra,18.1860,76.0419,Marathwada,"soybean,tur",Osmanabad
-mh_jalna,Jalna,Maharashtra,19.8410,75.8864,Marathwada,"cotton,soybean",Jalna
-mh_parbhani,Parbhani,Maharashtra,19.2704,76.7602,Marathwada,"cotton,soybean",Parbhani
-mh_hingoli,Hingoli,Maharashtra,19.7178,77.1441,Marathwada,"soybean,cotton",Hingoli
-mh_nanded,Nanded,Maharashtra,19.1383,77.3210,Marathwada,"cotton,soybean",Nanded
-ka_kalaburagi,Kalaburagi,Karnataka,17.3297,76.8343,North Karnataka,"tur,paddy,cotton",Kalaburagi
-ka_vijayapura,Vijayapura,Karnataka,16.8302,75.7100,North Karnataka,"tur,cotton,sunflower",Vijayapura
-ka_bidar,Bidar,Karnataka,17.9104,77.5199,North Karnataka,"tur,soybean",Bidar
-rj_barmer,Barmer,Rajasthan,25.7521,71.3967,Rajasthan,"bajra,moong,guar",Barmer
-rj_jaisalmer,Jaisalmer,Rajasthan,26.9157,70.9083,Rajasthan,"bajra,moong",Jaisalmer
-rj_jodhpur,Jodhpur,Rajasthan,26.2389,73.0243,Rajasthan,"bajra,moth",Jodhpur
-gj_kutch,Kutch,Gujarat,23.2420,69.6669,Gujarat,"cotton,groundnut,bajra",Kachchh
-gj_banaskantha,Banaskantha,Gujarat,24.1720,72.4390,Gujarat,"groundnut,bajra,cotton","Banas Kantha"
-mp_chhatarpur,Chhatarpur,Madhya Pradesh,24.9180,79.5941,Madhya Pradesh,"soybean,paddy",Chhatarpur
-mp_sagar,Sagar,Madhya Pradesh,23.8388,78.7378,Madhya Pradesh,"soybean,urad",Sagar
-cg_mahasamund,Mahasamund,Chhattisgarh,21.1094,82.0973,Chhattisgarh,"paddy",Mahasamund
-up_chitrakoot,Chitrakoot,Uttar Pradesh,25.2000,80.8500,Eastern UP,"paddy,maize",Chitrakoot
-up_banda,Banda,Uttar Pradesh,25.4762,80.3382,Eastern UP,"paddy,tur",Banda
+an_nicobars,Nicobars,Andaman and Nicobar Islands,7.0000167,93.8110528,,,Nicobars
+an_north_and_middle_andaman,North and Middle Andaman,Andaman and Nicobar Islands,12.6112387,92.8316541,,,North and Middle Andaman
+an_south_andamans,South Andamans,Andaman and Nicobar Islands,10.7056905,92.4874679,,,South Andamans
+ap_alluri_sitharama_raju,Alluri Sitharama Raju,Andhra Pradesh,18.0591962,82.6749006,,,Alluri Sitharama Raju
+ap_anakapalli,Anakapalli,Andhra Pradesh,17.6715331,82.7747567,,,Anakapalli
+ap_anantapur,Anantapur,Andhra Pradesh,15.161059,77.3913642,,,Anantapur
+ap_annamayya,Annamayya,Andhra Pradesh,13.7883575,78.6346286,,,Annamayya
+ap_bapatla,Bapatla,Andhra Pradesh,15.9344304,80.4505522,,,Bapatla
+ap_chittoor,Chittoor,Andhra Pradesh,13.325036,79.6480611,,,Chittoor
+ap_east_godavari,East Godavari,Andhra Pradesh,16.9956639,81.7154378,,,East Godavari
+ap_eluru,Eluru,Andhra Pradesh,17.013798,81.0803354,,,Eluru
+ap_guntur,Guntur,Andhra Pradesh,16.2853547,80.5686143,,,Guntur
+ap_kakinada,Kakinada,Andhra Pradesh,17.120459,82.1842504,,,Kakinada
+ap_konaseema,Konaseema,Andhra Pradesh,16.5815096,81.9963295,,,Konaseema
+ap_krishna,Krishna,Andhra Pradesh,16.2135466,81.0277844,,,Krishna
+ap_kurnool,Kurnool,Andhra Pradesh,15.5478804,77.554259,,,Kurnool
+ap_nandyal,Nandyal,Andhra Pradesh,15.5247879,78.4149396,,,Nandyal
+ap_ntr,Ntr,Andhra Pradesh,16.8169118,80.2502299,,,Ntr
+ap_palnadu,Palnadu,Andhra Pradesh,16.3231038,79.6975049,,,Palnadu
+ap_parvathipuram_manyam,Parvathipuram Manyam,Andhra Pradesh,18.7514985,83.5487473,,,Parvathipuram Manyam
+ap_prakasam,Prakasam,Andhra Pradesh,15.5641955,80.0066786,,,Prakasam
+ap_spsr_nellore,Spsr Nellore,Andhra Pradesh,14.557001,79.7234781,,,Spsr Nellore
+ap_sri_sathya_sai,Sri Sathya Sai,Andhra Pradesh,14.1681806,77.9641188,,,Sri Sathya Sai
+ap_srikakulam,Srikakulam,Andhra Pradesh,18.622438,84.1443764,,,Srikakulam
+ap_tirupati,Tirupati,Andhra Pradesh,13.8891927,79.6730504,,,Tirupati
+ap_visakhapatanam,Visakhapatanam,Andhra Pradesh,17.8053222,83.2827677,,,Visakhapatanam
+ap_vizianagaram,Vizianagaram,Andhra Pradesh,18.2760018,83.4662692,,,Vizianagaram
+ap_west_godavari,West Godavari,Andhra Pradesh,16.6443029,81.5885247,,,West Godavari
+ap_y_s_r,Y.S.R.,Andhra Pradesh,14.4019236,79.9226275,,,Y.S.R.
+ar_anjaw,Anjaw,Arunachal Pradesh,28.1553856,96.8407212,,,Anjaw
+ar_changlang,Changlang,Arunachal Pradesh,27.2698797,96.0602442,,,Changlang
+ar_dibang_valley,Dibang Valley,Arunachal Pradesh,28.8291044,95.9554096,,,Dibang Valley
+ar_east_kameng,East Kameng,Arunachal Pradesh,27.557781,93.0753012,,,East Kameng
+ar_east_siang,East Siang,Arunachal Pradesh,28.0742219,95.4178149,,,East Siang
+ar_kamle,Kamle,Arunachal Pradesh,27.7312325,94.0964663,,,Kamle
+ar_kra_daadi,Kra Daadi,Arunachal Pradesh,27.9635418,93.7665654,,,Kra Daadi
+ar_kurung_kumey,Kurung Kumey,Arunachal Pradesh,27.9863677,93.1578347,,,Kurung Kumey
+ar_leparada,Leparada,Arunachal Pradesh,27.9211266,94.7409362,,,Leparada
+ar_lohit,Lohit,Arunachal Pradesh,28.0350162,96.1713515,,,Lohit
+ar_longding,Longding,Arunachal Pradesh,26.8794546,95.3155652,,,Longding
+ar_lower_dibang_valley,Lower Dibang Valley,Arunachal Pradesh,28.2149563,95.878774,,,Lower Dibang Valley
+ar_lower_siang,Lower Siang,Arunachal Pradesh,27.8006983,94.5650233,,,Lower Siang
+ar_lower_subansiri,Lower Subansiri,Arunachal Pradesh,27.6059753,93.8669707,,,Lower Subansiri
+ar_namsai,Namsai,Arunachal Pradesh,27.7140306,96.0159709,,,Namsai
+ar_pakke_kessang,Pakke Kessang,Arunachal Pradesh,27.1582856,93.1561502,,,Pakke Kessang
+ar_papum_pare,Papum Pare,Arunachal Pradesh,27.2863667,93.6187716,,,Papum Pare
+ar_shi_yomi,Shi Yomi,Arunachal Pradesh,28.6851663,94.2367824,,,Shi Yomi
+ar_siang,Siang,Arunachal Pradesh,28.477492,94.8165573,,,Siang
+ar_tawang,Tawang,Arunachal Pradesh,27.6741942,91.9362059,,,Tawang
+ar_tirap,Tirap,Arunachal Pradesh,27.030169,95.4979175,,,Tirap
+ar_upper_siang,Upper Siang,Arunachal Pradesh,28.7312046,95.0377315,,,Upper Siang
+ar_upper_subansiri,Upper Subansiri,Arunachal Pradesh,28.2596054,94.0938106,,,Upper Subansiri
+ar_west_kameng,West Kameng,Arunachal Pradesh,27.2915853,92.4619174,,,West Kameng
+ar_west_siang,West Siang,Arunachal Pradesh,28.1970922,94.48407,,,West Siang
+as_bajali,Bajali,Assam,26.5406805,91.168727,,,Bajali
+as_baksa,Baksa,Assam,26.6275689,91.3388551,,,Baksa
+as_barpeta,Barpeta,Assam,26.345941,91.039708,,,Barpeta
+as_biswanath,Biswanath,Assam,26.7938596,93.3591936,,,Biswanath
+as_bongaigaon,Bongaigaon,Assam,26.348883,90.6291434,,,Bongaigaon
+as_cachar,Cachar,Assam,24.75864,92.8816648,,,Cachar
+as_charaideo,Charaideo,Assam,27.0696859,95.0642272,,,Charaideo
+as_chirang,Chirang,Assam,26.6464231,90.624157,,,Chirang
+as_darrang,Darrang,Assam,26.4373481,92.0047145,,,Darrang
+as_dhemaji,Dhemaji,Assam,27.5945155,94.7192098,,,Dhemaji
+as_dhubri,Dhubri,Assam,26.132275,90.1249962,,,Dhubri
+as_dibrugarh,Dibrugarh,Assam,27.400599,94.9950865,,,Dibrugarh
+as_dima_hasao,Dima Hasao,Assam,25.4003625,93.0752292,,,Dima Hasao
+as_goalpara,Goalpara,Assam,26.0491877,90.6001859,,,Goalpara
+as_golaghat,Golaghat,Assam,26.3689557,94.0086553,,,Golaghat
+as_hailakandi,Hailakandi,Assam,24.5076094,92.6267589,,,Hailakandi
+as_hojai,Hojai,Assam,25.9629402,92.981829,,,Hojai
+as_jorhat,Jorhat,Assam,26.6500766,94.2700644,,,Jorhat
+as_kamrup,Kamrup,Assam,26.1468861,91.2227397,,,Kamrup
+as_kamrup_metro,Kamrup Metro,Assam,26.1161377,91.7973256,,,Kamrup Metro
+as_karbi_anglong,Karbi Anglong,Assam,26.0712781,93.4552969,,,Karbi Anglong
+as_karimganj,Karimganj,Assam,24.5828196,92.3725487,,,Karimganj
+as_kokrajhar,Kokrajhar,Assam,26.4912104,90.1215209,,,Kokrajhar
+as_lakhimpur,Lakhimpur,Assam,27.1763356,94.1992932,,,Lakhimpur
+as_majuli,Majuli,Assam,27.0219529,94.327423,,,Majuli
+as_marigaon,Marigaon,Assam,26.290712,92.2922184,,,Marigaon
+as_nagaon,Nagaon,Assam,26.3313646,92.7524763,,,Nagaon
+as_nalbari,Nalbari,Assam,26.3533632,91.3983662,,,Nalbari
+as_sivasagar,Sivasagar,Assam,26.993972,94.6203887,,,Sivasagar
+as_sonitpur,Sonitpur,Assam,26.7677707,92.7014089,,,Sonitpur
+as_south_salmara_mancachar,South Salmara Mancachar,Assam,25.7604472,89.8928061,,,South Salmara Mancachar
+as_tamulpur,Tamulpur,Assam,26.6420982,91.6234201,,,Tamulpur
+as_tinsukia,Tinsukia,Assam,27.5971709,95.5668529,,,Tinsukia
+as_udalguri,Udalguri,Assam,26.7047238,92.0421507,,,Udalguri
+as_west_karbi_anglong,West Karbi Anglong,Assam,25.8529142,92.5875681,,,West Karbi Anglong
+br_araria,Araria,Bihar,26.2651013,87.3699437,,,Araria
+br_arwal,Arwal,Bihar,25.1812832,84.6596648,,,Arwal
+br_aurangabad,Aurangabad,Bihar,24.8033201,84.4110198,,,Aurangabad
+br_banka,Banka,Bihar,24.8328273,86.8161114,,,Banka
+br_begusarai,Begusarai,Bihar,25.5125411,86.0883392,,,Begusarai
+br_bhagalpur,Bhagalpur,Bihar,25.2861354,87.1304229,,,Bhagalpur
+br_bhojpur,Bhojpur,Bihar,25.4501182,84.5635193,,,Bhojpur
+br_buxar,Buxar,Bihar,25.5044834,84.1097525,,,Buxar
+br_darbhanga,Darbhanga,Bihar,26.0829899,86.0324951,,,Darbhanga
 br_gaya,Gaya,Bihar,24.7955,85.0002,Bihar,"paddy,maize",Gaya
+br_gopalganj,Gopalganj,Bihar,26.4211166,84.3739133,,,Gopalganj
+br_jamui,Jamui,Bihar,24.7562514,86.3011128,,,Jamui
+br_jehanabad,Jehanabad,Bihar,25.1529579,85.0065043,,,Jehanabad
+br_kaimur_bhabua,Kaimur (Bhabua),Bihar,25.0398678,83.6085775,,,Kaimur (Bhabua)
+br_katihar,Katihar,Bihar,25.5586421,87.6457196,,,Katihar
+br_khagaria,Khagaria,Bihar,25.4930513,86.6982264,,,Khagaria
+br_kishanganj,Kishanganj,Bihar,26.2984144,87.9466715,,,Kishanganj
+br_lakhisarai,Lakhisarai,Bihar,25.1543938,86.1744959,,,Lakhisarai
+br_madhepura,Madhepura,Bihar,25.7806118,86.9364753,,,Madhepura
+br_madhubani,Madhubani,Bihar,26.3503076,86.2296424,,,Madhubani
+br_munger,Munger,Bihar,25.2202864,86.5161484,,,Munger
+br_muzaffarpur,Muzaffarpur,Bihar,26.1482548,85.3316097,,,Muzaffarpur
+br_nalanda,Nalanda,Bihar,25.211599,85.4484611,,,Nalanda
+br_nawada,Nawada,Bihar,24.8173249,85.5179085,,,Nawada
+br_pashchim_champaran,Pashchim Champaran,Bihar,27.0,84.5,,,Pashchim Champaran
+br_patna,Patna,Bihar,25.4680538,85.1952852,,,Patna
+br_purbi_champaran,Purbi Champaran,Bihar,26.6465969,84.9091552,,,Purbi Champaran
+br_purnia,Purnia,Bihar,25.7758723,87.4087667,,,Purnia
+br_rohtas,Rohtas,Bihar,24.9394143,84.0197031,,,Rohtas
+br_saharsa,Saharsa,Bihar,25.8330757,86.6143751,,,Saharsa
+br_samastipur,Samastipur,Bihar,25.7747885,85.8672314,,,Samastipur
+br_saran,Saran,Bihar,25.9214451,84.7759731,,,Saran
+br_sheikhpura,Sheikhpura,Bihar,25.1250741,85.8160771,,,Sheikhpura
+br_sheohar,Sheohar,Bihar,26.4934234,85.2717561,,,Sheohar
+br_sitamarhi,Sitamarhi,Bihar,26.5712894,85.6001549,,,Sitamarhi
+br_siwan,Siwan,Bihar,26.131008,84.3910745,,,Siwan
+br_supaul,Supaul,Bihar,26.2768089,86.7959614,,,Supaul
+br_vaishali,Vaishali,Bihar,25.7491703,85.3972164,,,Vaishali
+ch_chandigarh,Chandigarh,Chandigarh,30.729844,76.7841457,,,Chandigarh
+cg_balod,Balod,Chhattisgarh,20.7277192,81.1446948,,,Balod
+cg_baloda_bazar,Baloda Bazar,Chhattisgarh,21.5731848,82.2994821,,,Baloda Bazar
+cg_balrampur,Balrampur,Chhattisgarh,23.6282576,83.4810916,,,Balrampur
+cg_bastar,Bastar,Chhattisgarh,19.1191283,81.8291865,,,Bastar
+cg_bemetara,Bemetara,Chhattisgarh,21.6783867,81.4412578,,,Bemetara
+cg_bijapur,Bijapur,Chhattisgarh,18.7935679,80.815939,,,Bijapur
+cg_bilaspur,Bilaspur,Chhattisgarh,22.1638486,82.1365923,,,Bilaspur
+cg_dantewada,Dantewada,Chhattisgarh,18.8640648,81.3833947,,,Dantewada
+cg_dhamtari,Dhamtari,Chhattisgarh,20.5326259,81.7155987,,,Dhamtari
+cg_durg,Durg,Chhattisgarh,21.1982964,81.4007922,,,Durg
+cg_gariyaband,Gariyaband,Chhattisgarh,20.5267561,82.1917217,,,Gariyaband
+cg_gaurella_pendra_marwahi,Gaurella Pendra Marwahi,Chhattisgarh,22.7552845,81.9022405,,,Gaurella Pendra Marwahi
+cg_janjgir_champa,Janjgir-Champa,Chhattisgarh,21.986403,82.5536606,,,Janjgir-Champa
+cg_jashpur,Jashpur,Chhattisgarh,22.770251,83.9708013,,,Jashpur
+cg_kabirdham,Kabirdham,Chhattisgarh,22.1150085,81.2446944,,,Kabirdham
+cg_kanker,Kanker,Chhattisgarh,20.0915,80.677242,,,Kanker
+cg_khairgarh_chhuikhadan_gandai,Khairgarh Chhuikhadan Gandai,Chhattisgarh,21.528849,80.9484326,,,Khairgarh Chhuikhadan Gandai
+cg_kondagaon,Kondagaon,Chhattisgarh,19.5885769,81.6628742,,,Kondagaon
+cg_korba,Korba,Chhattisgarh,22.5198217,82.6350029,,,Korba
+cg_korea,Korea,Chhattisgarh,23.2382999,82.3906588,,,Korea
+cg_mahasamund,Mahasamund,Chhattisgarh,21.1094,82.0973,Chhattisgarh,paddy,Mahasamund
+cg_manendragarh_chirimiri_bharatpur,Manendragarh Chirimiri Bharatpur,Chhattisgarh,23.4316693,82.1630361,,,Manendragarh Chirimiri Bharatpur
+cg_mohla_manpur_ambagarh_chouki,Mohla Manpur Ambagarh Chouki,Chhattisgarh,20.4957731,80.800025,,,Mohla Manpur Ambagarh Chouki
+cg_mungeli,Mungeli,Chhattisgarh,22.0661098,81.6874282,,,Mungeli
+cg_narayanpur,Narayanpur,Chhattisgarh,19.5842032,81.1136986,,,Narayanpur
+cg_raigarh,Raigarh,Chhattisgarh,22.2361795,83.3529534,,,Raigarh
+cg_raipur,Raipur,Chhattisgarh,21.2809089,81.8164073,,,Raipur
+cg_rajnandgaon,Rajnandgaon,Chhattisgarh,21.0684425,80.7970779,,,Rajnandgaon
+cg_sakti,Sakti,Chhattisgarh,21.9243353,82.9650923,,,Sakti
+cg_sarangarh_bilaigarh,Sarangarh Bilaigarh,Chhattisgarh,21.5427809,83.1261357,,,Sarangarh Bilaigarh
+cg_sukma,Sukma,Chhattisgarh,18.2665423,81.2925234,,,Sukma
+cg_surajpur,Surajpur,Chhattisgarh,23.3577769,82.9761277,,,Surajpur
+cg_surguja,Surguja,Chhattisgarh,22.9469135,83.1656942,,,Surguja
+dl_central,Central,Delhi,28.6990095,77.2314634,,,Central
+dl_east,East,Delhi,28.723308,77.2668565,,,East
+dl_new_delhi,New Delhi,Delhi,28.6138954,77.2090057,,,New Delhi
+dl_north,North,Delhi,28.7379145,77.0100626,,,North
+dl_north_east,North East,Delhi,28.723308,77.2668565,,,North East
+dl_north_west,North West,Delhi,28.7379145,77.0100626,,,North West
+dl_shahdara,Shahdara,Delhi,28.6758661,77.2985078,,,Shahdara
+dl_south,South,Delhi,28.4851694,77.1963652,,,South
+dl_south_east,South East,Delhi,28.5448946,77.2723284,,,South East
+dl_south_west,South West,Delhi,28.5856255,77.0704986,,,South West
+dl_west,West,Delhi,28.7379145,77.0100626,,,West
+ga_north_goa,North Goa,Goa,15.6038925,73.9967006,,,North Goa
+ga_south_goa,South Goa,Goa,15.3376121,73.9937035,,,South Goa
+gj_ahmadabad,Ahmadabad,Gujarat,23.416667,72.916667,,,Ahmadabad
+gj_amreli,Amreli,Gujarat,21.4176122,71.249609,,,Amreli
+gj_anand,Anand,Gujarat,22.4739858,72.7361779,,,Anand
+gj_arvalli,Arvalli,Gujarat,23.4843216,73.3986096,,,Arvalli
+gj_banaskantha,Banaskantha,Gujarat,24.172,72.439,Gujarat,"groundnut,bajra,cotton",Banas Kantha
+gj_bharuch,Bharuch,Gujarat,21.8357373,72.8820876,,,Bharuch
+gj_bhavnagar,Bhavnagar,Gujarat,21.5656705,71.9077622,,,Bhavnagar
+gj_botad,Botad,Gujarat,22.0467097,71.6689617,,,Botad
+gj_chhotaudepur,Chhotaudepur,Gujarat,22.2224345,73.7778749,,,Chhotaudepur
+gj_dang,Dang,Gujarat,20.7881718,73.7092033,,,Dang
+gj_devbhumi_dwarka,Devbhumi Dwarka,Gujarat,22.2428993,68.9656446,,,Devbhumi Dwarka
+gj_dohad,Dohad,Gujarat,22.9194099,74.1342725,,,Dohad
+gj_gandhinagar,Gandhinagar,Gujarat,23.2819525,72.6536309,,,Gandhinagar
+gj_gir_somnath,Gir Somnath,Gujarat,20.9298181,70.7627578,,,Gir Somnath
+gj_jamnagar,Jamnagar,Gujarat,22.32997,70.1327524,,,Jamnagar
+gj_junagadh,Junagadh,Gujarat,21.3364779,70.4250428,,,Junagadh
+gj_kheda,Kheda,Gujarat,22.8532503,72.9953586,,,Kheda
+gj_kutch,Kutch,Gujarat,23.242,69.6669,Gujarat,"cotton,groundnut,bajra",Kachchh
+gj_mahesana,Mahesana,Gujarat,23.5705467,72.4568752,,,Mahesana
+gj_mahisagar,Mahisagar,Gujarat,23.1912194,73.6644398,,,Mahisagar
+gj_morbi,Morbi,Gujarat,22.8003959,70.886232,,,Morbi
+gj_narmada,Narmada,Gujarat,21.7392624,73.6262458,,,Narmada
+gj_navsari,Navsari,Gujarat,20.829714,73.0332342,,,Navsari
+gj_panch_mahals,Panch Mahals,Gujarat,23.0,74.0,,,Panch Mahals
+gj_patan,Patan,Gujarat,23.773753,71.6798581,,,Patan
+gj_porbandar,Porbandar,Gujarat,21.602975,69.8538067,,,Porbandar
+gj_rajkot,Rajkot,Gujarat,22.069288,71.0288686,,,Rajkot
+gj_sabar_kantha,Sabar Kantha,Gujarat,23.5,73.25,,,Sabar Kantha
+gj_surat,Surat,Gujarat,21.1923647,72.9551023,,,Surat
+gj_surendranagar,Surendranagar,Gujarat,22.8251395,71.6209736,,,Surendranagar
+gj_tapi,Tapi,Gujarat,21.1916567,73.5560631,,,Tapi
+gj_vadodara,Vadodara,Gujarat,22.3179455,73.3048674,,,Vadodara
+gj_valsad,Valsad,Gujarat,20.4321957,73.1409893,,,Valsad
+hr_ambala,Ambala,Haryana,30.3435002,76.9493554,,,Ambala
+hr_bhiwani,Bhiwani,Haryana,28.7328101,75.8928296,,,Bhiwani
+hr_charki_dadri,Charki Dadri,Haryana,28.6000997,76.1123707,,,Charki Dadri
+hr_faridabad,Faridabad,Haryana,28.3584336,77.3268462,,,Faridabad
+hr_fatehabad,Fatehabad,Haryana,29.5359209,75.5752901,,,Fatehabad
+hr_gurugram,Gurugram,Haryana,28.4492944,77.0306587,,,Gurugram
+hr_hisar,Hisar,Haryana,29.2396596,75.8174505,,,Hisar
+hr_jhajjar,Jhajjar,Haryana,28.5964461,76.6505366,,,Jhajjar
+hr_jind,Jind,Haryana,29.4494987,76.3736217,,,Jind
+hr_kaithal,Kaithal,Haryana,29.8536764,76.4684323,,,Kaithal
+hr_karnal,Karnal,Haryana,29.7255766,76.9106924,,,Karnal
+hr_kurukshetra,Kurukshetra,Haryana,30.0606702,76.7631053,,,Kurukshetra
+hr_mahendragarh,Mahendragarh,Haryana,28.1326971,76.1697448,,,Mahendragarh
+hr_nuh,Nuh,Haryana,27.9935177,77.0419634,,,Nuh
+hr_palwal,Palwal,Haryana,28.0599426,77.3223422,,,Palwal
+hr_panchkula,Panchkula,Haryana,30.689535,76.9947922,,,Panchkula
+hr_panipat,Panipat,Haryana,29.3472909,76.8871622,,,Panipat
+hr_rewari,Rewari,Haryana,28.2180521,76.5816859,,,Rewari
+hr_rohtak,Rohtak,Haryana,28.8900602,76.5873106,,,Rohtak
+hr_sirsa,Sirsa,Haryana,29.6063041,74.9036568,,,Sirsa
+hr_sonipat,Sonipat,Haryana,29.0414186,76.922715,,,Sonipat
+hr_yamunanagar,Yamunanagar,Haryana,30.2158611,77.3256507,,,Yamunanagar
+hp_bilaspur,Bilaspur,Himachal Pradesh,31.3380959,76.7611631,,,Bilaspur
+hp_chamba,Chamba,Himachal Pradesh,32.6923316,76.1631552,,,Chamba
+hp_hamirpur,Hamirpur,Himachal Pradesh,31.6539866,76.5403633,,,Hamirpur
+hp_kangra,Kangra,Himachal Pradesh,32.0768665,76.2985872,,,Kangra
+hp_kinnaur,Kinnaur,Himachal Pradesh,31.593013,78.3281417,,,Kinnaur
+hp_kullu,Kullu,Himachal Pradesh,31.8778325,77.4495659,,,Kullu
+hp_lahul_and_spiti,Lahul and Spiti,Himachal Pradesh,32.5015861,77.5789891,,,Lahul and Spiti
+hp_mandi,Mandi,Himachal Pradesh,31.6516617,77.0092542,,,Mandi
+hp_shimla,Shimla,Himachal Pradesh,31.2387672,77.7185684,,,Shimla
+hp_sirmaur,Sirmaur,Himachal Pradesh,30.6991321,77.4465304,,,Sirmaur
+hp_solan,Solan,Himachal Pradesh,31.0568119,76.850301,,,Solan
+hp_una,Una,Himachal Pradesh,31.5834642,76.2351452,,,Una
+jk_anantnag,Anantnag,Jammu and Kashmir,33.8096849,75.2494527,,,Anantnag
+jk_bandipora,Bandipora,Jammu and Kashmir,34.2819952,74.462952,,,Bandipora
+jk_baramulla,Baramulla,Jammu and Kashmir,34.1774032,74.3150048,,,Baramulla
+jk_budgam,Budgam,Jammu and Kashmir,33.9098746,74.6270357,,,Budgam
+jk_doda,Doda,Jammu and Kashmir,33.13261,75.5890079,,,Doda
+jk_ganderbal,Ganderbal,Jammu and Kashmir,34.2889322,75.0407983,,,Ganderbal
+jk_jammu,Jammu,Jammu and Kashmir,32.7681864,74.9211318,,,Jammu
+jk_kathua,Kathua,Jammu and Kashmir,32.5825837,75.6104797,,,Kathua
+jk_kishtwar,Kishtwar,Jammu and Kashmir,33.61562,75.8793972,,,Kishtwar
+jk_kulgam,Kulgam,Jammu and Kashmir,33.6250187,74.6949458,,,Kulgam
+jk_kupwara,Kupwara,Jammu and Kashmir,34.5140696,74.191367,,,Kupwara
+jk_poonch,Poonch,Jammu and Kashmir,33.702939,74.2499015,,,Poonch
+jk_pulwama,Pulwama,Jammu and Kashmir,33.9490472,75.0418335,,,Pulwama
+jk_rajouri,Rajouri,Jammu and Kashmir,33.2663678,74.343847,,,Rajouri
+jk_ramban,Ramban,Jammu and Kashmir,33.3332892,75.1984763,,,Ramban
+jk_reasi,Reasi,Jammu and Kashmir,33.2059909,74.8626794,,,Reasi
+jk_samba,Samba,Jammu and Kashmir,32.5759118,75.1203446,,,Samba
+jk_shopian,Shopian,Jammu and Kashmir,33.7207837,74.7714244,,,Shopian
+jk_srinagar,Srinagar,Jammu and Kashmir,34.1178785,74.9659189,,,Srinagar
+jk_udhampur,Udhampur,Jammu and Kashmir,32.911964,75.3265845,,,Udhampur
+jh_bokaro,Bokaro,Jharkhand,23.6991279,85.9910689,,,Bokaro
+jh_chatra,Chatra,Jharkhand,24.1062316,84.8623379,,,Chatra
+jh_deoghar,Deoghar,Jharkhand,24.3284257,86.7182506,,,Deoghar
+jh_dhanbad,Dhanbad,Jharkhand,23.8451969,86.4636588,,,Dhanbad
+jh_dumka,Dumka,Jharkhand,24.3159312,87.2720833,,,Dumka
+jh_east_singhbum,East Singhbum,Jharkhand,22.613184,86.3819399,,,East Singhbum
+jh_garhwa,Garhwa,Jharkhand,24.053577,83.6526818,,,Garhwa
+jh_giridih,Giridih,Jharkhand,24.3314546,86.1548117,,,Giridih
+jh_godda,Godda,Jharkhand,24.8645886,87.2984838,,,Godda
+jh_gumla,Gumla,Jharkhand,23.1603759,84.4599565,,,Gumla
+jh_hazaribagh,Hazaribagh,Jharkhand,24.0866962,85.4912231,,,Hazaribagh
+jh_jamtara,Jamtara,Jharkhand,23.9801639,86.9243637,,,Jamtara
+jh_khunti,Khunti,Jharkhand,22.9281801,85.2814475,,,Khunti
+jh_koderma,Koderma,Jharkhand,24.4931239,85.5560811,,,Koderma
+jh_latehar,Latehar,Jharkhand,23.6880057,84.4969551,,,Latehar
+jh_lohardaga,Lohardaga,Jharkhand,23.4770044,84.6986684,,,Lohardaga
+jh_pakur,Pakur,Jharkhand,24.5325908,87.593232,,,Pakur
 jh_palamu,Palamu,Jharkhand,24.0333,84.0667,Jharkhand,"paddy,maize",Palamu
+jh_ramgarh,Ramgarh,Jharkhand,23.693479,85.5215989,,,Ramgarh
+jh_ranchi,Ranchi,Jharkhand,23.3007039,85.3738838,,,Ranchi
+jh_sahebganj,Sahebganj,Jharkhand,25.0320437,87.691764,,,Sahebganj
+jh_saraikela_kharsawan,Saraikela Kharsawan,Jharkhand,22.7464225,85.9168929,,,Saraikela Kharsawan
+jh_simdega,Simdega,Jharkhand,22.5904573,84.5464805,,,Simdega
+jh_west_singhbhum,West Singhbhum,Jharkhand,22.4282857,85.5317483,,,West Singhbhum
+ka_bagalkote,Bagalkote,Karnataka,16.2903648,75.5915819,,,Bagalkote
+ka_ballari,Ballari,Karnataka,15.3483166,76.8054883,,,Ballari
+ka_belagavi,Belagavi,Karnataka,16.1587846,74.888862,,,Belagavi
+ka_bengaluru_rural,Bengaluru Rural,Karnataka,13.247078,77.4914691,,,Bengaluru Rural
+ka_bengaluru_urban,Bengaluru Urban,Karnataka,12.9461554,77.5503844,,,Bengaluru Urban
+ka_bidar,Bidar,Karnataka,17.9104,77.5199,North Karnataka,"tur,soybean",Bidar
+ka_chamarajanagara,Chamarajanagara,Karnataka,11.9278753,76.9363946,,,Chamarajanagara
+ka_chikkaballapura,Chikkaballapura,Karnataka,13.5897941,77.778793,,,Chikkaballapura
+ka_chikkamagaluru,Chikkamagaluru,Karnataka,13.4058699,75.638758,,,Chikkamagaluru
+ka_chitradurga,Chitradurga,Karnataka,14.3049174,76.5296667,,,Chitradurga
+ka_dakshina_kannada,Dakshina Kannada,Karnataka,12.8226434,75.2265036,,,Dakshina Kannada
+ka_davangere,Davangere,Karnataka,14.4682233,75.9250945,,,Davangere
+ka_dharwad,Dharwad,Karnataka,15.3707296,75.1332867,,,Dharwad
+ka_gadag,Gadag,Karnataka,15.416692,75.6815801,,,Gadag
+ka_hassan,Hassan,Karnataka,13.0301852,76.1744968,,,Hassan
+ka_haveri,Haveri,Karnataka,14.7180268,75.3656423,,,Haveri
+ka_kalaburagi,Kalaburagi,Karnataka,17.3297,76.8343,North Karnataka,"tur,paddy,cotton",Kalaburagi
+ka_kodagu,Kodagu,Karnataka,12.3827332,75.6640715,,,Kodagu
+ka_kolar,Kolar,Karnataka,13.1805066,78.2669329,,,Kolar
+ka_koppal,Koppal,Karnataka,15.5748238,76.3118494,,,Koppal
+ka_mandya,Mandya,Karnataka,12.6368939,76.7275477,,,Mandya
+ka_mysuru,Mysuru,Karnataka,12.1968318,76.6120468,,,Mysuru
+ka_raichur,Raichur,Karnataka,16.0547194,76.9003647,,,Raichur
+ka_ramanagara,Ramanagara,Karnataka,12.7280308,77.2745329,,,Ramanagara
+ka_shivamogga,Shivamogga,Karnataka,14.0556503,75.2380553,,,Shivamogga
+ka_tumakuru,Tumakuru,Karnataka,13.4192512,76.8810004,,,Tumakuru
+ka_udupi,Udupi,Karnataka,13.5269784,74.8731879,,,Udupi
+ka_uttara_kannada,Uttara Kannada,Karnataka,14.7253795,74.6403389,,,Uttara Kannada
+ka_vijayanagar,Vijayanagar,Karnataka,14.9428567,76.0448007,,,Vijayanagar
+ka_vijayapura,Vijayapura,Karnataka,16.8302,75.71,North Karnataka,"tur,cotton,sunflower",Vijayapura
+ka_yadgir,Yadgir,Karnataka,16.5744123,76.9254434,,,Yadgir
+kl_alappuzha,Alappuzha,Kerala,9.5003416,76.4123364,,,Alappuzha
+kl_ernakulam,Ernakulam,Kerala,10.0383947,76.5074145,,,Ernakulam
+kl_idukki,Idukki,Kerala,9.8154785,76.9991599,,,Idukki
+kl_kannur,Kannur,Kerala,11.9863343,75.5479704,,,Kannur
+kl_kasaragod,Kasaragod,Kerala,12.4221964,75.1904446,,,Kasaragod
+kl_kollam,Kollam,Kerala,8.9674039,76.8585783,,,Kollam
+kl_kottayam,Kottayam,Kerala,9.6287383,76.6455326,,,Kottayam
+kl_kozhikode,Kozhikode,Kerala,11.4655936,75.89194,,,Kozhikode
+kl_malappuram,Malappuram,Kerala,11.1068448,76.1099551,,,Malappuram
+kl_palakkad,Palakkad,Kerala,10.7873692,76.4742172,,,Palakkad
+kl_pathanamthitta,Pathanamthitta,Kerala,9.2780841,76.9737443,,,Pathanamthitta
+kl_thiruvananthapuram,Thiruvananthapuram,Kerala,8.5769705,77.0501246,,,Thiruvananthapuram
+kl_thrissur,Thrissur,Kerala,10.4786547,76.2726125,,,Thrissur
+kl_wayanad,Wayanad,Kerala,11.7151291,76.1271185,,,Wayanad
+la_kargil,Kargil,Ladakh,33.802819,76.4730096,,,Kargil
+la_leh_ladakh,Leh Ladakh,Ladakh,34.1490636,77.5744554,,,Leh Ladakh
+ld_lakshadweep_district,Lakshadweep District,Lakshadweep,10.8668096,72.2007076,,,Lakshadweep District
+mp_agar_malwa,Agar Malwa,Madhya Pradesh,23.935092,76.1449595,,,Agar Malwa
+mp_alirajpur,Alirajpur,Madhya Pradesh,22.2859525,74.3545628,,,Alirajpur
+mp_anuppur,Anuppur,Madhya Pradesh,23.0346179,81.7510255,,,Anuppur
+mp_ashoknagar,Ashoknagar,Madhya Pradesh,24.6186095,77.8786983,,,Ashoknagar
+mp_balaghat,Balaghat,Madhya Pradesh,21.8611589,80.3237105,,,Balaghat
+mp_barwani,Barwani,Madhya Pradesh,21.7514248,74.8915957,,,Barwani
+mp_betul,Betul,Madhya Pradesh,21.8797472,77.8753651,,,Betul
+mp_bhind,Bhind,Madhya Pradesh,26.3518828,78.6863189,,,Bhind
+mp_bhopal,Bhopal,Madhya Pradesh,23.4839759,77.3928507,,,Bhopal
+mp_burhanpur,Burhanpur,Madhya Pradesh,21.334867,76.3708803,,,Burhanpur
+mp_chhatarpur,Chhatarpur,Madhya Pradesh,24.918,79.5941,Madhya Pradesh,"soybean,paddy",Chhatarpur
+mp_chhindwara,Chhindwara,Madhya Pradesh,22.2071897,78.798833,,,Chhindwara
+mp_damoh,Damoh,Madhya Pradesh,23.7981005,79.5419356,,,Damoh
+mp_datia,Datia,Madhya Pradesh,25.9182947,78.6644962,,,Datia
+mp_dewas,Dewas,Madhya Pradesh,22.8057498,76.2940408,,,Dewas
+mp_dhar,Dhar,Madhya Pradesh,22.5786572,75.2258637,,,Dhar
+mp_dindori,Dindori,Madhya Pradesh,22.9070871,80.8846924,,,Dindori
+mp_east_nimar,East Nimar,Madhya Pradesh,21.75,76.583333,,,East Nimar
+mp_guna,Guna,Madhya Pradesh,24.5001772,77.2600959,,,Guna
+mp_gwalior,Gwalior,Madhya Pradesh,26.0287495,78.1570654,,,Gwalior
+mp_harda,Harda,Madhya Pradesh,22.2427973,77.1179173,,,Harda
+mp_indore,Indore,Madhya Pradesh,22.7108119,75.8076918,,,Indore
+mp_jabalpur,Jabalpur,Madhya Pradesh,23.2230231,79.9825642,,,Jabalpur
+mp_jhabua,Jhabua,Madhya Pradesh,22.8869652,74.7243249,,,Jhabua
+mp_katni,Katni,Madhya Pradesh,23.7176393,80.2610181,,,Katni
+mp_khargone,Khargone,Madhya Pradesh,21.9544729,75.7521248,,,Khargone
+mp_mandla,Mandla,Madhya Pradesh,22.6871074,80.5816341,,,Mandla
+mp_mandsaur,Mandsaur,Madhya Pradesh,24.2628148,75.385692,,,Mandsaur
+mp_morena,Morena,Madhya Pradesh,26.3849794,77.8612721,,,Morena
+mp_narmadapuram,Narmadapuram,Madhya Pradesh,22.6002833,77.9269848,,,Narmadapuram
+mp_narsinghpur,Narsinghpur,Madhya Pradesh,22.934556,79.0867849,,,Narsinghpur
+mp_neemuch,Neemuch,Madhya Pradesh,24.6305517,75.1829,,,Neemuch
+mp_niwari,Niwari,Madhya Pradesh,25.3123152,78.667564,,,Niwari
+mp_panna,Panna,Madhya Pradesh,24.4498931,80.1462723,,,Panna
+mp_raisen,Raisen,Madhya Pradesh,23.2675909,78.1727134,,,Raisen
+mp_rajgarh,Rajgarh,Madhya Pradesh,23.8716707,76.7744703,,,Rajgarh
+mp_ratlam,Ratlam,Madhya Pradesh,23.50222,74.9551534,,,Ratlam
+mp_rewa,Rewa,Madhya Pradesh,24.7560846,81.3810574,,,Rewa
+mp_sagar,Sagar,Madhya Pradesh,23.8388,78.7378,Madhya Pradesh,"soybean,urad",Sagar
+mp_satna,Satna,Madhya Pradesh,24.6954445,80.7770348,,,Satna
+mp_sehore,Sehore,Madhya Pradesh,23.1150041,77.0665356,,,Sehore
+mp_seoni,Seoni,Madhya Pradesh,22.2748109,79.7202522,,,Seoni
+mp_shahdol,Shahdol,Madhya Pradesh,23.3002343,81.364771,,,Shahdol
+mp_shajapur,Shajapur,Madhya Pradesh,23.4171002,76.6074794,,,Shajapur
+mp_sheopur,Sheopur,Madhya Pradesh,25.7499267,76.9212945,,,Sheopur
+mp_shivpuri,Shivpuri,Madhya Pradesh,25.3741215,77.8278866,,,Shivpuri
+mp_sidhi,Sidhi,Madhya Pradesh,24.2112687,81.7000415,,,Sidhi
+mp_singrauli,Singrauli,Madhya Pradesh,24.2431343,82.3827672,,,Singrauli
+mp_tikamgarh,Tikamgarh,Madhya Pradesh,24.8552105,79.0472546,,,Tikamgarh
+mp_ujjain,Ujjain,Madhya Pradesh,23.2933285,75.6263115,,,Ujjain
+mp_umaria,Umaria,Madhya Pradesh,23.6431837,80.9419078,,,Umaria
+mp_vidisha,Vidisha,Madhya Pradesh,23.8463004,77.8370209,,,Vidisha
+mh_ahmednagar,Ahmednagar,Maharashtra,19.1627725,74.8580243,,,Ahmednagar
+mh_akola,Akola,Maharashtra,20.7618122,77.1921157,,,Akola
+mh_amravati,Amravati,Maharashtra,21.1545412,77.6442962,,,Amravati
+mh_beed,Beed,Maharashtra,18.9894,75.7601,Marathwada,"cotton,soybean,tur",Beed
+mh_bhandara,Bhandara,Maharashtra,21.1225869,79.794509,,,Bhandara
+mh_buldhana,Buldhana,Maharashtra,20.562845,76.4086986,,,Buldhana
+mh_chandrapur,Chandrapur,Maharashtra,20.0967555,79.5045475,,,Chandrapur
+mh_sambhajinagar,Chhatrapati Sambhajinagar,Maharashtra,19.8762,75.3433,Marathwada,"cotton,soybean,maize",Aurangabad
+mh_dharashiv,Dharashiv (Osmanabad),Maharashtra,18.186,76.0419,Marathwada,"soybean,tur",Osmanabad
+mh_dhule,Dhule,Maharashtra,21.1305215,74.4900614,,,Dhule
+mh_gadchiroli,Gadchiroli,Maharashtra,19.7590704,80.1622807,,,Gadchiroli
+mh_gondia,Gondia,Maharashtra,21.455228,80.1962729,,,Gondia
+mh_hingoli,Hingoli,Maharashtra,19.7178,77.1441,Marathwada,"soybean,cotton",Hingoli
+mh_jalgaon,Jalgaon,Maharashtra,20.8428827,75.5261246,,,Jalgaon
+mh_jalna,Jalna,Maharashtra,19.841,75.8864,Marathwada,"cotton,soybean",Jalna
+mh_kolhapur,Kolhapur,Maharashtra,16.4626695,74.0894749,,,Kolhapur
+mh_latur,Latur,Maharashtra,18.4088,76.5604,Marathwada,"soybean,tur,cotton",Latur
+mh_mumbai,Mumbai,Maharashtra,18.9327713,72.8370823,,,Mumbai
+mh_mumbai_suburban,Mumbai Suburban,Maharashtra,19.1309844,72.8894618,,,Mumbai Suburban
+mh_nagpur,Nagpur,Maharashtra,21.1529647,79.0145059,,,Nagpur
+mh_nanded,Nanded,Maharashtra,19.1383,77.321,Marathwada,"cotton,soybean",Nanded
+mh_nandurbar,Nandurbar,Maharashtra,21.5141622,74.5405513,,,Nandurbar
+mh_nashik,Nashik,Maharashtra,20.2254559,74.104233,,,Nashik
+mh_palghar,Palghar,Maharashtra,19.757249,73.0931199,,,Palghar
+mh_parbhani,Parbhani,Maharashtra,19.2704,76.7602,Marathwada,"cotton,soybean",Parbhani
+mh_pune,Pune,Maharashtra,18.6448627,73.9224157,,,Pune
+mh_raigad,Raigad,Maharashtra,18.4928092,73.138071,,,Raigad
+mh_ratnagiri,Ratnagiri,Maharashtra,17.2826079,73.4569787,,,Ratnagiri
+mh_sangli,Sangli,Maharashtra,17.1726928,74.5867654,,,Sangli
+mh_satara,Satara,Maharashtra,17.6361289,74.2982781,,,Satara
+mh_sindhudurg,Sindhudurg,Maharashtra,16.1357193,73.6522086,,,Sindhudurg
+mh_solapur,Solapur,Maharashtra,17.8499067,75.2763203,,,Solapur
+mh_thane,Thane,Maharashtra,19.3653598,73.3685437,,,Thane
+mh_wardha,Wardha,Maharashtra,20.8256231,78.6131455,,,Wardha
+mh_washim,Washim,Maharashtra,20.2874178,77.2369655,,,Washim
+mh_yavatmal,Yavatmal,Maharashtra,20.0638677,78.3565663,,,Yavatmal
+mn_bishnupur,Bishnupur,Manipur,24.5263926,93.800487,,,Bishnupur
+mn_chandel,Chandel,Manipur,24.1700959,94.0059673,,,Chandel
+mn_churachandpur,Churachandpur,Manipur,24.3095833,93.675022,,,Churachandpur
+mn_imphal_east,Imphal East,Manipur,24.8326698,94.0168859,,,Imphal East
+mn_imphal_west,Imphal West,Manipur,24.7590802,93.8617365,,,Imphal West
+mn_jiribam,Jiribam,Manipur,24.7093494,93.1198775,,,Jiribam
+mn_kakching,Kakching,Manipur,24.4147192,93.884174,,,Kakching
+mn_kamjong,Kamjong,Manipur,24.7983446,94.3815303,,,Kamjong
+mn_kangpokpi,Kangpokpi,Manipur,25.0032647,93.8993395,,,Kangpokpi
+mn_noney,Noney,Manipur,24.778669,93.5090836,,,Noney
+mn_pherzawl,Pherzawl,Manipur,24.3707492,93.2523548,,,Pherzawl
+mn_senapati,Senapati,Manipur,25.3933697,94.1501773,,,Senapati
+mn_tamenglong,Tamenglong,Manipur,25.0648711,93.5465432,,,Tamenglong
+mn_tengnoupal,Tengnoupal,Manipur,24.3626155,94.2594997,,,Tengnoupal
+mn_thoubal,Thoubal,Manipur,24.6203931,94.0104782,,,Thoubal
+mn_ukhrul,Ukhrul,Manipur,25.3121261,94.4754982,,,Ukhrul
+ml_east_garo_hills,East Garo Hills,Meghalaya,25.6184946,90.6342162,,,East Garo Hills
+ml_east_jaintia_hills,East Jaintia Hills,Meghalaya,25.2515761,92.4840501,,,East Jaintia Hills
+ml_east_khasi_hills,East Khasi Hills,Meghalaya,25.4023736,91.8317178,,,East Khasi Hills
+ml_eastern_west_khasi_hills,Eastern West Khasi Hills,Meghalaya,25.6520493,91.6232301,,,Eastern West Khasi Hills
+ml_north_garo_hills,North Garo Hills,Meghalaya,25.8619841,90.7017705,,,North Garo Hills
+ml_ri_bhoi,Ri Bhoi,Meghalaya,25.8764026,91.8567574,,,Ri Bhoi
+ml_south_garo_hills,South Garo Hills,Meghalaya,25.347969,90.5657773,,,South Garo Hills
+ml_south_west_garo_hills,South West Garo Hills,Meghalaya,25.444631,89.9969655,,,South West Garo Hills
+ml_south_west_khasi_hills,South West Khasi Hills,Meghalaya,25.3307221,91.3217388,,,South West Khasi Hills
+ml_west_garo_hills,West Garo Hills,Meghalaya,25.6065343,90.2038335,,,West Garo Hills
+ml_west_jaintia_hills,West Jaintia Hills,Meghalaya,25.4425965,92.2988275,,,West Jaintia Hills
+ml_west_khasi_hills,West Khasi Hills,Meghalaya,25.5814429,91.0851094,,,West Khasi Hills
+mz_aizawl,Aizawl,Mizoram,23.8608788,92.864694,,,Aizawl
+mz_champhai,Champhai,Mizoram,23.5443743,93.3479506,,,Champhai
+mz_hnahthial,Hnahthial,Mizoram,22.9663656,93.0102645,,,Hnahthial
+mz_khawzawl,Khawzawl,Mizoram,23.4877894,93.1402943,,,Khawzawl
+mz_kolasib,Kolasib,Mizoram,24.1905469,92.7136595,,,Kolasib
+mz_lawngtlai,Lawngtlai,Mizoram,22.3913377,92.7397189,,,Lawngtlai
+mz_lunglei,Lunglei,Mizoram,22.9519972,92.6338827,,,Lunglei
+mz_mamit,Mamit,Mizoram,23.7564387,92.4515374,,,Mamit
+mz_saiha,Saiha,Mizoram,22.2876724,93.01336,,,Saiha
+mz_saitual,Saitual,Mizoram,23.8128569,92.9727975,,,Saitual
+mz_serchhip,Serchhip,Mizoram,23.3052514,92.8455124,,,Serchhip
+nl_chumoukedima,Chumoukedima,Nagaland,25.808681,93.714867,,,Chumoukedima
+nl_dimapur,Dimapur,Nagaland,25.9041378,93.7177609,,,Dimapur
+nl_kiphire,Kiphire,Nagaland,25.8117088,94.8474036,,,Kiphire
+nl_kohima,Kohima,Nagaland,25.7169804,94.0982194,,,Kohima
+nl_longleng,Longleng,Nagaland,26.5839315,94.8045481,,,Longleng
+nl_mokokchung,Mokokchung,Nagaland,26.4795861,94.5105275,,,Mokokchung
+nl_mon,Mon,Nagaland,26.666667,95.0,,,Mon
+nl_noklak,Noklak,Nagaland,26.1123947,95.0124041,,,Noklak
+nl_peren,Peren,Nagaland,25.4499691,93.6001738,,,Peren
+nl_phek,Phek,Nagaland,25.6700924,94.3843925,,,Phek
+nl_tseminyu,Tseminyu,Nagaland,25.9410368,94.1685474,,,Tseminyu
+nl_tuensang,Tuensang,Nagaland,26.2342107,94.741553,,,Tuensang
+nl_wokha,Wokha,Nagaland,26.242251,94.1921153,,,Wokha
+nl_zunheboto,Zunheboto,Nagaland,26.0123803,94.5123719,,,Zunheboto
+od_anugul,Anugul,Odisha,20.8444035,85.1137498,,,Anugul
+od_balangir,Balangir,Odisha,20.6095183,83.1673029,,,Balangir
+od_baleshwar,Baleshwar,Odisha,21.5197916,86.8790638,,,Baleshwar
+od_bargarh,Bargarh,Odisha,21.2319922,83.5652737,,,Bargarh
+od_bhadrak,Bhadrak,Odisha,20.9854052,86.5934226,,,Bhadrak
+od_boudh,Boudh,Odisha,20.6407463,83.9969704,,,Boudh
+od_cuttack,Cuttack,Odisha,20.3700655,85.4697256,,,Cuttack
+od_deogarh,Deogarh,Odisha,21.5370786,84.7301184,,,Deogarh
+od_dhenkanal,Dhenkanal,Odisha,20.8351494,85.6022305,,,Dhenkanal
+od_gajapati,Gajapati,Odisha,19.1966026,84.1930634,,,Gajapati
+od_ganjam,Ganjam,Odisha,19.6090068,84.7080633,,,Ganjam
+od_jagatsinghapur,Jagatsinghapur,Odisha,20.1801473,86.3414874,,,Jagatsinghapur
+od_jajapur,Jajapur,Odisha,20.9027962,86.1539076,,,Jajapur
+od_jharsuguda,Jharsuguda,Odisha,21.8019368,83.9713964,,,Jharsuguda
+od_kalahandi,Kalahandi,Odisha,19.8265757,83.0408702,,,Kalahandi
+od_kandhamal,Kandhamal,Odisha,20.1306939,84.0790476,,,Kandhamal
+od_kendrapara,Kendrapara,Odisha,20.5475164,86.5296168,,,Kendrapara
+od_kendujhar,Kendujhar,Odisha,21.5892323,85.6687841,,,Kendujhar
+od_khordha,Khordha,Odisha,20.0538149,85.5023308,,,Khordha
+od_koraput,Koraput,Odisha,18.7232023,82.6100596,,,Koraput
+od_malkangiri,Malkangiri,Odisha,18.2744685,81.9520316,,,Malkangiri
+od_mayurbhanj,Mayurbhanj,Odisha,21.9156338,86.3961824,,,Mayurbhanj
+od_nabarangpur,Nabarangpur,Odisha,19.2288319,82.5668344,,,Nabarangpur
+od_nayagarh,Nayagarh,Odisha,20.2393682,85.050728,,,Nayagarh
+od_nuapada,Nuapada,Odisha,20.5412657,82.5292352,,,Nuapada
+od_puri,Puri,Odisha,19.8343066,85.6853295,,,Puri
+od_rayagada,Rayagada,Odisha,19.4426698,83.5873053,,,Rayagada
+od_sambalpur,Sambalpur,Odisha,21.5570606,84.1528515,,,Sambalpur
+od_sonepur,Sonepur,Odisha,20.8431294,83.9063454,,,Sonepur
+od_sundargarh,Sundargarh,Odisha,22.0605153,83.9359154,,,Sundargarh
+py_karaikal,Karaikal,Puducherry,10.9156489,79.8069488,,,Karaikal
+py_mahe,Mahe,Puducherry,11.728542,75.5535769,,,Mahe
+py_pondicherry,Pondicherry,Puducherry,12.032854,79.8584147,,,Pondicherry
+py_yanam,Yanam,Puducherry,16.7385032,82.2106199,,,Yanam
+pb_amritsar,Amritsar,Punjab,31.7685759,74.8315603,,,Amritsar
+pb_barnala,Barnala,Punjab,30.3716802,75.5039887,,,Barnala
+pb_bathinda,Bathinda,Punjab,30.1794814,75.0471098,,,Bathinda
+pb_faridkot,Faridkot,Punjab,30.6014507,74.7950176,,,Faridkot
+pb_fatehgarh_sahib,Fatehgarh Sahib,Punjab,30.6634042,76.3803,,,Fatehgarh Sahib
+pb_fazilka,Fazilka,Punjab,30.3198406,74.1217943,,,Fazilka
+pb_ferozepur,Ferozepur,Punjab,30.9011872,75.8301011,,,Ferozepur
+pb_gurdaspur,Gurdaspur,Punjab,31.9037264,75.2275587,,,Gurdaspur
+pb_hoshiarpur,Hoshiarpur,Punjab,31.6092942,75.8459754,,,Hoshiarpur
+pb_jalandhar,Jalandhar,Punjab,31.2922312,75.5678878,,,Jalandhar
+pb_kapurthala,Kapurthala,Punjab,31.3856476,75.3053304,,,Kapurthala
+pb_ludhiana,Ludhiana,Punjab,30.789407,75.8269724,,,Ludhiana
+pb_malerkotla,Malerkotla,Punjab,30.5372203,75.9088832,,,Malerkotla
+pb_mansa,Mansa,Punjab,29.8764133,75.4889564,,,Mansa
+pb_moga,Moga,Punjab,30.7877554,75.159359,,,Moga
+pb_pathankot,Pathankot,Punjab,32.3021899,75.6589406,,,Pathankot
+pb_patiala,Patiala,Punjab,30.2092778,76.3397231,,,Patiala
+pb_rupnagar,Rupnagar,Punjab,31.0917102,76.5289701,,,Rupnagar
+pb_s_a_s_nagar,S.A.S Nagar,Punjab,30.7178072,76.6985062,,,S.A.S Nagar
+pb_sangrur,Sangrur,Punjab,30.135717,75.8533326,,,Sangrur
+pb_shahid_bhagat_singh_nagar,Shahid Bhagat Singh Nagar,Punjab,31.126969,76.1598988,,,Shahid Bhagat Singh Nagar
+pb_sri_muktsar_sahib,Sri Muktsar Sahib,Punjab,30.2867162,74.5262234,,,Sri Muktsar Sahib
+pb_tarn_taran,Tarn Taran,Punjab,31.3212453,74.8416687,,,Tarn Taran
+rj_ajmer,Ajmer,Rajasthan,26.3318872,74.7169752,,,Ajmer
+rj_alwar,Alwar,Rajasthan,27.4140049,76.6170387,,,Alwar
+rj_banswara,Banswara,Rajasthan,23.4915047,74.3502172,,,Banswara
+rj_baran,Baran,Rajasthan,24.9208165,76.6821985,,,Baran
+rj_barmer,Barmer,Rajasthan,25.7521,71.3967,Rajasthan,"bajra,moong,guar",Barmer
+rj_bharatpur,Bharatpur,Rajasthan,27.0246959,77.2920116,,,Bharatpur
+rj_bhilwara,Bhilwara,Rajasthan,25.470994,74.6961316,,,Bhilwara
+rj_bikaner,Bikaner,Rajasthan,28.1161617,73.110567,,,Bikaner
+rj_bundi,Bundi,Rajasthan,25.4367659,75.7361471,,,Bundi
+rj_chittorgarh,Chittorgarh,Rajasthan,24.7171578,74.4718129,,,Chittorgarh
+rj_churu,Churu,Rajasthan,28.2047781,74.6912996,,,Churu
+rj_dausa,Dausa,Rajasthan,26.8048659,76.4437457,,,Dausa
+rj_dholpur,Dholpur,Rajasthan,26.7010642,77.896749,,,Dholpur
+rj_dungarpur,Dungarpur,Rajasthan,23.6723053,73.8166419,,,Dungarpur
+rj_ganganagar,Ganganagar,Rajasthan,29.5,74.0,,,Ganganagar
+rj_hanumangarh,Hanumangarh,Rajasthan,29.3659533,74.298429,,,Hanumangarh
+rj_jaipur,Jaipur,Rajasthan,26.9784335,75.7122089,,,Jaipur
+rj_jaisalmer,Jaisalmer,Rajasthan,26.9157,70.9083,Rajasthan,"bajra,moong",Jaisalmer
+rj_jalore,Jalore,Rajasthan,25.2093482,72.3178889,,,Jalore
+rj_jhalawar,Jhalawar,Rajasthan,24.3132368,76.5221078,,,Jhalawar
+rj_jhunjhunu,Jhunjhunu,Rajasthan,28.0798944,75.5424211,,,Jhunjhunu
+rj_jodhpur,Jodhpur,Rajasthan,26.2389,73.0243,Rajasthan,"bajra,moth",Jodhpur
+rj_karauli,Karauli,Rajasthan,26.5158329,77.0565965,,,Karauli
+rj_kota,Kota,Rajasthan,25.196683,76.0009687,,,Kota
+rj_nagaur,Nagaur,Rajasthan,26.9873443,73.7389011,,,Nagaur
+rj_pali,Pali,Rajasthan,25.4552211,73.419389,,,Pali
+rj_pratapgarh,Pratapgarh,Rajasthan,24.0232221,74.6250275,,,Pratapgarh
+rj_rajsamand,Rajsamand,Rajasthan,25.2892459,73.8241077,,,Rajsamand
+rj_sawai_madhopur,Sawai Madhopur,Rajasthan,26.2290186,76.3043561,,,Sawai Madhopur
+rj_sikar,Sikar,Rajasthan,27.6624156,75.0279971,,,Sikar
+rj_sirohi,Sirohi,Rajasthan,24.8114047,72.8300257,,,Sirohi
+rj_tonk,Tonk,Rajasthan,26.1223198,75.6632235,,,Tonk
+rj_udaipur,Udaipur,Rajasthan,24.453502,73.4070437,,,Udaipur
+sk_gangtok,Gangtok,Sikkim,27.3257345,88.6983549,,,Gangtok
+sk_gyalshing,Gyalshing,Sikkim,27.4185174,88.1808338,,,Gyalshing
+sk_mangan,Mangan,Sikkim,27.7497442,88.5212055,,,Mangan
+sk_namchi,Namchi,Sikkim,27.3031019,88.3785961,,,Namchi
+sk_pakyong,Pakyong,Sikkim,27.228935,88.6471196,,,Pakyong
+sk_soreng,Soreng,Sikkim,27.1901652,88.2006735,,,Soreng
+tn_ariyalur,Ariyalur,Tamil Nadu,11.1530559,79.2585797,,,Ariyalur
+tn_chengalpattu,Chengalpattu,Tamil Nadu,12.636245,80.0653519,,,Chengalpattu
+tn_chennai,Chennai,Tamil Nadu,13.0008413,80.2023035,,,Chennai
+tn_coimbatore,Coimbatore,Tamil Nadu,10.8124445,77.0796084,,,Coimbatore
+tn_cuddalore,Cuddalore,Tamil Nadu,11.5202071,79.3396356,,,Cuddalore
+tn_dharmapuri,Dharmapuri,Tamil Nadu,12.1456131,78.1132217,,,Dharmapuri
+tn_dindigul,Dindigul,Tamil Nadu,10.4256896,77.815664,,,Dindigul
+tn_erode,Erode,Tamil Nadu,11.4905282,77.3505274,,,Erode
+tn_kallakurichi,Kallakurichi,Tamil Nadu,11.7946847,79.0388211,,,Kallakurichi
+tn_kanchipuram,Kanchipuram,Tamil Nadu,12.9647163,79.9839686,,,Kanchipuram
+tn_kanniyakumari,Kanniyakumari,Tamil Nadu,8.3279814,77.3541173,,,Kanniyakumari
+tn_karur,Karur,Tamil Nadu,10.8217671,78.3828654,,,Karur
+tn_krishnagiri,Krishnagiri,Tamil Nadu,12.5152075,78.0093769,,,Krishnagiri
+tn_madurai,Madurai,Tamil Nadu,9.9369266,78.007823,,,Madurai
+tn_mayiladuthurai,Mayiladuthurai,Tamil Nadu,11.1895598,79.69457,,,Mayiladuthurai
+tn_nagapattinam,Nagapattinam,Tamil Nadu,10.6026203,79.7619348,,,Nagapattinam
+tn_namakkal,Namakkal,Tamil Nadu,11.3033889,78.118604,,,Namakkal
+tn_perambalur,Perambalur,Tamil Nadu,11.2902641,78.9300404,,,Perambalur
+tn_pudukkottai,Pudukkottai,Tamil Nadu,10.2903072,78.8173617,,,Pudukkottai
+tn_ramanathapuram,Ramanathapuram,Tamil Nadu,9.5205576,78.5184635,,,Ramanathapuram
+tn_ranipet,Ranipet,Tamil Nadu,12.9186243,79.4081921,,,Ranipet
+tn_salem,Salem,Tamil Nadu,11.6469616,78.2106958,,,Salem
+tn_sivaganga,Sivaganga,Tamil Nadu,9.8671821,78.550483,,,Sivaganga
+tn_tenkasi,Tenkasi,Tamil Nadu,9.0933908,77.4758373,,,Tenkasi
+tn_thanjavur,Thanjavur,Tamil Nadu,10.659037,79.2014278,,,Thanjavur
+tn_the_nilgiris,The Nilgiris,Tamil Nadu,11.4,76.7,,,The Nilgiris
+tn_theni,Theni,Tamil Nadu,9.8692558,77.4222974,,,Theni
+tn_thiruvallur,Thiruvallur,Tamil Nadu,13.2537619,80.0562572,,,Thiruvallur
+tn_thiruvarur,Thiruvarur,Tamil Nadu,10.6878621,79.4979437,,,Thiruvarur
+tn_tiruchirappalli,Tiruchirappalli,Tamil Nadu,10.8504608,78.724533,,,Tiruchirappalli
+tn_tirunelveli,Tirunelveli,Tamil Nadu,8.5495014,77.5805178,,,Tirunelveli
+tn_tirupathur,Tirupathur,Tamil Nadu,12.5858719,78.6313559,,,Tirupathur
+tn_tiruppur,Tiruppur,Tamil Nadu,10.7915267,77.5325466,,,Tiruppur
+tn_tiruvannamalai,Tiruvannamalai,Tamil Nadu,12.4289282,78.99915,,,Tiruvannamalai
+tn_tuticorin,Tuticorin,Tamil Nadu,8.8015308,78.1373709,,,Tuticorin
+tn_vellore,Vellore,Tamil Nadu,12.9021849,79.061104,,,Vellore
+tn_villupuram,Villupuram,Tamil Nadu,11.3972643,79.6956744,,,Villupuram
+tn_virudhunagar,Virudhunagar,Tamil Nadu,9.4926289,77.8631831,,,Virudhunagar
+ts_adilabad,Adilabad,Telangana,19.5457038,78.6086759,,,Adilabad
+ts_bhadradri_kothagudem,Bhadradri Kothagudem,Telangana,17.7166633,80.5712609,,,Bhadradri Kothagudem
+ts_hanumakonda,Hanumakonda,Telangana,18.032699,79.4283969,,,Hanumakonda
+ts_hyderabad,Hyderabad,Telangana,17.388786,78.4610647,,,Hyderabad
+ts_jagitial,Jagitial,Telangana,18.7908955,78.9118341,,,Jagitial
+ts_jangoan,Jangoan,Telangana,17.71981,79.159451,,,Jangoan
+ts_jayashankar_bhupalapally,Jayashankar Bhupalapally,Telangana,18.5159872,79.9693966,,,Jayashankar Bhupalapally
+ts_jogulamba_gadwal,Jogulamba Gadwal,Telangana,16.0999202,77.7341584,,,Jogulamba Gadwal
+ts_kamareddy,Kamareddy,Telangana,18.316551,78.0539381,,,Kamareddy
+ts_karimnagar,Karimnagar,Telangana,18.4075996,79.2182933,,,Karimnagar
+ts_khammam,Khammam,Telangana,17.1729189,80.4057537,,,Khammam
+ts_kumuram_bheem_asifabad,Kumuram Bheem Asifabad,Telangana,19.3338189,79.4219793,,,Kumuram Bheem Asifabad
+ts_mahabubabad,Mahabubabad,Telangana,17.7138983,80.0413425,,,Mahabubabad
+ts_mahabubnagar,Mahabubnagar,Telangana,16.6965686,77.9591146,,,Mahabubnagar
+ts_mancherial,Mancherial,Telangana,18.9812967,79.5198096,,,Mancherial
+ts_medak,Medak,Telangana,17.9375095,78.211745,,,Medak
+ts_medchal_malkajgiri,Medchal Malkajgiri,Telangana,17.5349835,78.5246387,,,Medchal Malkajgiri
+ts_mulugu,Mulugu,Telangana,18.3145348,80.3458816,,,Mulugu
+ts_nagarkurnool,Nagarkurnool,Telangana,16.4157626,78.6830433,,,Nagarkurnool
+ts_nalgonda,Nalgonda,Telangana,16.8579636,79.2174935,,,Nalgonda
+ts_narayanpet,Narayanpet,Telangana,16.7005518,77.6164845,,,Narayanpet
+ts_nirmal,Nirmal,Telangana,19.091521,78.396609,,,Nirmal
+ts_nizamabad,Nizamabad,Telangana,18.7248422,78.1921833,,,Nizamabad
+ts_peddapalli,Peddapalli,Telangana,18.6206531,79.4950171,,,Peddapalli
+ts_rajanna_sircilla,Rajanna Sircilla,Telangana,18.452116,78.7645584,,,Rajanna Sircilla
+ts_ranga_reddy,Ranga Reddy,Telangana,17.1333954,78.3970979,,,Ranga Reddy
+ts_sangareddy,Sangareddy,Telangana,17.8684342,77.8227189,,,Sangareddy
+ts_siddipet,Siddipet,Telangana,18.0055851,78.896113,,,Siddipet
+ts_suryapet,Suryapet,Telangana,17.0800139,79.792533,,,Suryapet
+ts_vikarabad,Vikarabad,Telangana,17.2702855,77.745297,,,Vikarabad
+ts_wanaparthy,Wanaparthy,Telangana,16.2852944,77.9864473,,,Wanaparthy
+ts_warangal,Warangal,Telangana,17.8675814,79.801947,,,Warangal
+ts_yadadri_bhuvanagiri,Yadadri Bhuvanagiri,Telangana,17.4281967,79.090491,,,Yadadri Bhuvanagiri
+dn_dadra_and_nagar_haveli,Dadra and Nagar Haveli,The Dadra and Nagar Haveli and Daman and Diu,20.2733946,73.0044983,,,Dadra and Nagar Haveli
+dn_daman,Daman,The Dadra and Nagar Haveli and Daman and Diu,20.416667,72.883333,,,Daman
+dn_diu,Diu,The Dadra and Nagar Haveli and Daman and Diu,20.7181749,70.9323834,,,Diu
+tr_dhalai,Dhalai,Tripura,23.8253158,91.9732227,,,Dhalai
+tr_gomati,Gomati,Tripura,23.4278179,91.6149726,,,Gomati
+tr_khowai,Khowai,Tripura,23.9563913,91.642107,,,Khowai
+tr_north_tripura,North Tripura,Tripura,24.0921476,92.2451214,,,North Tripura
+tr_sepahijala,Sepahijala,Tripura,23.6658005,91.3200275,,,Sepahijala
+tr_south_tripura,South Tripura,Tripura,23.1708278,91.638817,,,South Tripura
+tr_unakoti,Unakoti,Tripura,24.1909849,92.0460483,,,Unakoti
+tr_west_tripura,West Tripura,Tripura,23.9153329,91.3879341,,,West Tripura
+up_agra,Agra,Uttar Pradesh,27.0755504,77.8753832,,,Agra
+up_aligarh,Aligarh,Uttar Pradesh,27.8761073,78.1358153,,,Aligarh
+up_ambedkar_nagar,Ambedkar Nagar,Uttar Pradesh,26.4045941,82.6065154,,,Ambedkar Nagar
+up_amethi,Amethi,Uttar Pradesh,26.346274,81.6252039,,,Amethi
+up_amroha,Amroha,Uttar Pradesh,28.7952632,78.3436244,,,Amroha
+up_auraiya,Auraiya,Uttar Pradesh,26.6558215,79.5160757,,,Auraiya
+up_ayodhya,Ayodhya,Uttar Pradesh,26.6382763,82.0585034,,,Ayodhya
+up_azamgarh,Azamgarh,Uttar Pradesh,26.023639,83.0293105,,,Azamgarh
+up_baghpat,Baghpat,Uttar Pradesh,29.0374779,77.3062737,,,Baghpat
+up_bahraich,Bahraich,Uttar Pradesh,27.7343823,81.47654,,,Bahraich
+up_ballia,Ballia,Uttar Pradesh,25.8749595,84.1210329,,,Ballia
+up_balrampur,Balrampur,Uttar Pradesh,27.4476988,82.3956245,,,Balrampur
+up_banda,Banda,Uttar Pradesh,25.4762,80.3382,Eastern UP,"paddy,tur",Banda
+up_barabanki,Barabanki,Uttar Pradesh,26.9421406,81.3856087,,,Barabanki
+up_bareilly,Bareilly,Uttar Pradesh,28.4582345,79.4047452,,,Bareilly
+up_basti,Basti,Uttar Pradesh,26.8387083,82.5350919,,,Basti
+up_bhadohi,Bhadohi,Uttar Pradesh,25.3627897,82.6846939,,,Bhadohi
+up_bijnor,Bijnor,Uttar Pradesh,29.4074203,78.4821406,,,Bijnor
+up_budaun,Budaun,Uttar Pradesh,28.116667,78.983333,,,Budaun
+up_bulandshahr,Bulandshahr,Uttar Pradesh,28.3874073,77.9743805,,,Bulandshahr
+up_chandauli,Chandauli,Uttar Pradesh,25.125695,83.2494601,,,Chandauli
+up_chitrakoot,Chitrakoot,Uttar Pradesh,25.2,80.85,Eastern UP,"paddy,maize",Chitrakoot
+up_deoria,Deoria,Uttar Pradesh,26.4239911,83.7638578,,,Deoria
+up_etah,Etah,Uttar Pradesh,27.5550357,78.5992221,,,Etah
+up_etawah,Etawah,Uttar Pradesh,26.7155629,79.0917098,,,Etawah
+up_farrukhabad,Farrukhabad,Uttar Pradesh,27.4362003,79.4894778,,,Farrukhabad
+up_fatehpur,Fatehpur,Uttar Pradesh,25.8348023,80.9154547,,,Fatehpur
+up_firozabad,Firozabad,Uttar Pradesh,27.1941954,78.4604956,,,Firozabad
+up_gautam_buddha_nagar,Gautam Buddha Nagar,Uttar Pradesh,28.368716,77.5970121,,,Gautam Buddha Nagar
+up_ghaziabad,Ghaziabad,Uttar Pradesh,28.7749966,77.4586967,,,Ghaziabad
+up_ghazipur,Ghazipur,Uttar Pradesh,25.6034863,83.5075888,,,Ghazipur
+up_gonda,Gonda,Uttar Pradesh,27.1103723,81.9238906,,,Gonda
+up_gorakhpur,Gorakhpur,Uttar Pradesh,26.6677977,83.3642334,,,Gorakhpur
+up_hamirpur,Hamirpur,Uttar Pradesh,25.75,80.0,,,Hamirpur
+up_hapur,Hapur,Uttar Pradesh,28.7166767,77.890433,,,Hapur
+up_hardoi,Hardoi,Uttar Pradesh,27.3369978,80.0998232,,,Hardoi
+up_hathras,Hathras,Uttar Pradesh,27.5724324,78.1116209,,,Hathras
+up_jalaun,Jalaun,Uttar Pradesh,26.1048633,79.3919136,,,Jalaun
+up_jaunpur,Jaunpur,Uttar Pradesh,25.7967065,82.4888992,,,Jaunpur
+up_jhansi,Jhansi,Uttar Pradesh,25.529855,78.6527802,,,Jhansi
+up_kannauj,Kannauj,Uttar Pradesh,26.9986675,79.6927946,,,Kannauj
+up_kanpur_dehat,Kanpur Dehat,Uttar Pradesh,26.4585639,79.8548052,,,Kanpur Dehat
+up_kanpur_nagar,Kanpur Nagar,Uttar Pradesh,26.4410107,80.2652803,,,Kanpur Nagar
+up_kasganj,Kasganj,Uttar Pradesh,27.7888527,78.8229701,,,Kasganj
+up_kaushambi,Kaushambi,Uttar Pradesh,25.5342456,81.4493567,,,Kaushambi
+up_kheri,Kheri,Uttar Pradesh,28.116667,80.716667,,,Kheri
+up_kushi_nagar,Kushi Nagar,Uttar Pradesh,26.9242612,83.8324465,,,Kushi Nagar
+up_lalitpur,Lalitpur,Uttar Pradesh,24.6999688,78.51862,,,Lalitpur
+up_lucknow,Lucknow,Uttar Pradesh,26.8312463,80.9174154,,,Lucknow
+up_maharajganj,Maharajganj,Uttar Pradesh,27.1424107,83.5390118,,,Maharajganj
+up_mahoba,Mahoba,Uttar Pradesh,25.3615938,79.706011,,,Mahoba
+up_mainpuri,Mainpuri,Uttar Pradesh,27.2093072,79.0625369,,,Mainpuri
+up_mathura,Mathura,Uttar Pradesh,27.633333,77.583333,,,Mathura
+up_mau,Mau,Uttar Pradesh,26.0390905,83.4985846,,,Mau
+up_meerut,Meerut,Uttar Pradesh,29.0018557,77.7679671,,,Meerut
+up_mirzapur,Mirzapur,Uttar Pradesh,24.9316896,82.6280163,,,Mirzapur
+up_moradabad,Moradabad,Uttar Pradesh,28.8796553,78.8095335,,,Moradabad
+up_muzaffarnagar,Muzaffarnagar,Uttar Pradesh,29.4496979,77.7429333,,,Muzaffarnagar
+up_pilibhit,Pilibhit,Uttar Pradesh,28.4947158,80.1076122,,,Pilibhit
+up_pratapgarh,Pratapgarh,Uttar Pradesh,25.75,81.75,,,Pratapgarh
+up_prayagraj,Prayagraj,Uttar Pradesh,25.2793187,81.9034977,,,Prayagraj
+up_rae_bareli,Rae Bareli,Uttar Pradesh,26.25,81.25,,,Rae Bareli
+up_rampur,Rampur,Uttar Pradesh,28.7934728,79.1845806,,,Rampur
+up_saharanpur,Saharanpur,Uttar Pradesh,29.9856799,77.5040646,,,Saharanpur
+up_sambhal,Sambhal,Uttar Pradesh,28.4271928,78.5564546,,,Sambhal
+up_sant_kabeer_nagar,Sant Kabeer Nagar,Uttar Pradesh,26.755082,83.0398545,,,Sant Kabeer Nagar
+up_shahjahanpur,Shahjahanpur,Uttar Pradesh,27.9128583,79.7476254,,,Shahjahanpur
+up_shamli,Shamli,Uttar Pradesh,29.4811508,77.2901344,,,Shamli
+up_shravasti,Shravasti,Uttar Pradesh,27.5083429,82.0263569,,,Shravasti
+up_siddharth_nagar,Siddharth Nagar,Uttar Pradesh,27.2752892,83.0675485,,,Siddharth Nagar
+up_sitapur,Sitapur,Uttar Pradesh,27.5026748,80.8335139,,,Sitapur
+up_sonbhadra,Sonbhadra,Uttar Pradesh,24.4148159,83.0637517,,,Sonbhadra
+up_sultanpur,Sultanpur,Uttar Pradesh,26.2604732,82.2380532,,,Sultanpur
+up_unnao,Unnao,Uttar Pradesh,26.5673264,80.6198193,,,Unnao
+up_varanasi,Varanasi,Uttar Pradesh,25.3719338,82.9414272,,,Varanasi
+uk_almora,Almora,Uttarakhand,29.702651,79.4326318,,,Almora
+uk_bageshwar,Bageshwar,Uttarakhand,30.0087902,79.9280183,,,Bageshwar
+uk_chamoli,Chamoli,Uttarakhand,30.4985956,79.6190537,,,Chamoli
+uk_champawat,Champawat,Uttarakhand,29.235032,80.1023068,,,Champawat
+uk_dehradun,Dehradun,Uttarakhand,30.4998157,77.8625457,,,Dehradun
+uk_haridwar,Haridwar,Uttarakhand,29.9123514,78.0087178,,,Haridwar
+uk_nainital,Nainital,Uttarakhand,29.294995,79.4162511,,,Nainital
+uk_pauri_garhwal,Pauri Garhwal,Uttarakhand,29.8473168,78.7070479,,,Pauri Garhwal
+uk_pithoragarh,Pithoragarh,Uttarakhand,30.1264975,80.4816989,,,Pithoragarh
+uk_rudra_prayag,Rudra Prayag,Uttarakhand,30.4915835,79.0366067,,,Rudra Prayag
+uk_tehri_garhwal,Tehri Garhwal,Uttarakhand,30.4658181,78.4837349,,,Tehri Garhwal
+uk_udam_singh_nagar,Udam Singh Nagar,Uttarakhand,29.0478314,79.4326164,,,Udam Singh Nagar
+uk_uttar_kashi,Uttar Kashi,Uttarakhand,30.9635733,78.6362521,,,Uttar Kashi
+wb_24_paraganas_north,24 Paraganas North,West Bengal,22.6926815,88.6625795,,,24 Paraganas North
+wb_24_paraganas_south,24 Paraganas South,West Bengal,22.1776733,88.5307853,,,24 Paraganas South
+wb_alipurduar,Alipurduar,West Bengal,26.6288169,89.4537824,,,Alipurduar
+wb_bankura,Bankura,West Bengal,23.132377,87.2081925,,,Bankura
+wb_birbhum,Birbhum,West Bengal,24.0621532,87.6982823,,,Birbhum
+wb_coochbehar,Coochbehar,West Bengal,26.340623,89.4812163,,,Coochbehar
+wb_darjeeling,Darjeeling,West Bengal,26.8361645,88.3058878,,,Darjeeling
+wb_dinajpur_dakshin,Dinajpur Dakshin,West Bengal,25.502348,88.7695362,,,Dinajpur Dakshin
+wb_dinajpur_uttar,Dinajpur Uttar,West Bengal,26.2590334,88.1856001,,,Dinajpur Uttar
+wb_hooghly,Hooghly,West Bengal,22.9099402,88.0120825,,,Hooghly
+wb_howrah,Howrah,West Bengal,22.4955651,88.0381478,,,Howrah
+wb_jalpaiguri,Jalpaiguri,West Bengal,26.6262805,88.7334485,,,Jalpaiguri
+wb_jhargram,Jhargram,West Bengal,22.332417,86.9936688,,,Jhargram
+wb_kalimpong,Kalimpong,West Bengal,27.027877,88.647194,,,Kalimpong
+wb_kolkata,Kolkata,West Bengal,22.5354262,88.3633146,,,Kolkata
+wb_maldah,Maldah,West Bengal,25.0977098,88.1261713,,,Maldah
+wb_medinipur_east,Medinipur East,West Bengal,22.2864402,87.9181378,,,Medinipur East
+wb_medinipur_west,Medinipur West,West Bengal,22.4256204,87.3196353,,,Medinipur West
+wb_murshidabad,Murshidabad,West Bengal,24.2904032,88.366432,,,Murshidabad
+wb_nadia,Nadia,West Bengal,23.4847374,88.5567067,,,Nadia
+wb_paschim_bardhaman,Paschim Bardhaman,West Bengal,23.6002978,87.3041301,,,Paschim Bardhaman
+wb_purba_bardhaman,Purba Bardhaman,West Bengal,23.388517,87.9068097,,,Purba Bardhaman
+wb_purulia,Purulia,West Bengal,23.2020967,86.3228988,,,Purulia

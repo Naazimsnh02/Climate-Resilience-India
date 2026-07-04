@@ -14,10 +14,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import requests
 import pandas as pd
-from common.config import OPENWEATHERMAP_API_KEY, SEED_DIR
-from common.bq_loader import load_dataframe
+from common.config import GCP_PROJECT, BQ_DATASET, OPENWEATHERMAP_API_KEY, SEED_DIR
+from common.bq_loader import load_dataframe, client
 
 BASE_URL = "https://api.openweathermap.org/data/2.5/forecast"
+RESUME_WINDOW = "INTERVAL 2 HOUR"  # treat rows pulled within this window as "this run"
 
 
 def fetch(lat, lon):
@@ -42,36 +43,61 @@ def to_daily_buckets(forecast_list):
     return daily
 
 
+def already_pulled_this_run():
+    """district_ids already loaded within the last couple hours, so a rerun after this
+    environment kills the background job resumes the same rolling-snapshot run instead
+    of re-truncating and re-fetching every district already done."""
+    table_id = f"{GCP_PROJECT}.{BQ_DATASET}.weather_forecast"
+    try:
+        rows = client().query(
+            f"SELECT DISTINCT district_id FROM `{table_id}` "
+            f"WHERE pulled_at > CAST((CURRENT_TIMESTAMP() - {RESUME_WINDOW}) AS STRING)"
+        ).result()
+        return {r.district_id for r in rows}
+    except Exception:
+        return set()
+
+
 def main():
     districts = pd.read_csv(SEED_DIR / "district_master.csv")
     now = datetime.now(timezone.utc)
 
-    rows = []
-    for _, d in districts.iterrows():
+    done = already_pulled_this_run()
+    todo = districts[~districts["district_id"].isin(done)]
+    print(f"{len(done)} districts already pulled this run, {len(todo)} to go")
+
+    # Load per-district as we go, not one batch at the end, so a failure partway through
+    # 763 districts leaves a valid (partial) snapshot instead of losing the whole run
+    # (same fix as gee_pull.py/mandi_prices.py/weather_current.py). The first district
+    # of a fresh run still replaces the prior snapshot (WRITE_TRUNCATE); every district
+    # after that - including on a resumed run - appends, preserving the "rolling
+    # snapshot, not a time series" semantics.
+    pulled = 0
+    is_fresh_run = len(done) == 0
+    for _, d in todo.iterrows():
         try:
             data = fetch(d["lat"], d["lon"])
         except Exception as exc:
             print(f"FAILED for {d['district_id']}: {exc}")
             continue
         daily = to_daily_buckets(data.get("list", []))
-        for date, bucket in sorted(daily.items()):
-            rows.append({
+        rows = [
+            {
                 "district_id": d["district_id"],
                 "forecast_date": date,
                 "pulled_at": now.isoformat(),
                 "expected_rain_mm": round(bucket["rain_mm"], 2),
                 "max_precip_probability": round(bucket["pop_max"], 2),
                 "source": "OpenWeatherMap 5day/3hour forecast",
-            })
+            }
+            for date, bucket in sorted(daily.items())
+        ]
+        if rows:
+            write_disposition = "WRITE_TRUNCATE" if (is_fresh_run and pulled == 0) else "WRITE_APPEND"
+            load_dataframe(pd.DataFrame(rows), "weather_forecast", write_disposition=write_disposition)
+            pulled += 1
 
-    df = pd.DataFrame(rows)
-    if df.empty:
-        print("No rows pulled, skipping BigQuery load.")
-        return
-    # WRITE_TRUNCATE: this is a rolling forecast snapshot, not a time series of past
-    # forecasts - each run replaces the prior forecast entirely, same rationale as
-    # load_tier2_seed.py's static-snapshot tables.
-    load_dataframe(df, "weather_forecast", write_disposition="WRITE_TRUNCATE")
+    print(f"Loaded {pulled} districts this run ({len(done) + pulled}/{len(districts)} total).")
 
 
 if __name__ == "__main__":

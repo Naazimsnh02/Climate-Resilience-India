@@ -67,29 +67,51 @@ def fetch_state(state, max_records=5000):
     return records
 
 
+def already_loaded_states():
+    """States already loaded in this run/a prior run, so a rerun after a crash or a
+    rate-limited state doesn't re-fetch (and re-append duplicate rows for) states
+    that already succeeded."""
+    from common.bq_loader import client
+    from common.config import GCP_PROJECT, BQ_DATASET
+    table_id = f"{GCP_PROJECT}.{BQ_DATASET}.mandi_prices"
+    try:
+        rows = client().query(f"SELECT DISTINCT State FROM `{table_id}`").result()
+        return {r.State for r in rows}
+    except Exception:
+        return set()  # table doesn't exist yet on a first run
+
+
 def main():
     districts = pd.read_csv(SEED_DIR / "district_master.csv")
     states = sorted(districts["state"].unique())
+    done = already_loaded_states()
+    todo = [s for s in states if s not in done]
+    print(f"{len(done)} states already loaded, {len(todo)} to fetch")
 
-    all_records = []
-    for state in states:
+    # Full-India scale (~36 states/UTs vs. the original 9) makes a single
+    # batch-at-the-end load risky - a rate limit, a connection timeout, or a killed
+    # background job partway through would lose every state already fetched. Load
+    # per-state as we go instead (see DATA_SOURCES.md's flagged follow-up + the same
+    # fix in mgnrega_employment.py), and catch broad request failures (not just 429s)
+    # so one flaky state doesn't kill the whole run.
+    loaded_states = 0
+    for state in todo:
         print(f"Fetching mandi prices for {state}...")
         try:
             recs = fetch_state(state)
-        except RuntimeError as exc:
-            print(f"  SKIPPED (rate limited past retry budget): {exc}")
+        except (RuntimeError, requests.exceptions.RequestException) as exc:
+            print(f"  SKIPPED (request failure, rerun to retry): {exc}")
             continue
         print(f"  {len(recs)} records")
-        all_records.extend(recs)
+        if recs:
+            df = pd.DataFrame(recs)
+            df["pulled_at"] = datetime.now(timezone.utc).isoformat()
+            load_dataframe(df, "mandi_prices", write_disposition="WRITE_APPEND")
+            loaded_states += 1
         time.sleep(1)  # cool off between states, not just between pages
 
-    if not all_records:
-        print("No records fetched, skipping BigQuery load.")
-        return
-
-    df = pd.DataFrame(all_records)
-    df["pulled_at"] = datetime.now(timezone.utc).isoformat()
-    load_dataframe(df, "mandi_prices", write_disposition="WRITE_APPEND")
+    print(f"Loaded mandi prices for {loaded_states}/{len(todo)} attempted states "
+          f"({len(done) + loaded_states}/{len(states)} total).")
 
 
 if __name__ == "__main__":

@@ -14,8 +14,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import ee
 import pandas as pd
-from common.config import GCP_PROJECT, SEED_DIR
-from common.bq_loader import load_dataframe
+from common.config import GCP_PROJECT, BQ_DATASET, SEED_DIR
+from common.bq_loader import load_dataframe, client
 
 PRECIP_WINDOW_DAYS = 30
 
@@ -93,13 +93,36 @@ def pull_for_district(district_id, lat, lon, end_date):
     return result
 
 
+def already_pulled_today(end_date):
+    """district_ids already loaded for today's pulled_at date, so a rerun after this
+    environment kills the background job (observed repeatedly at 763-district scale)
+    resumes instead of re-running (and re-appending duplicate rows for) every district
+    already done."""
+    table_id = f"{GCP_PROJECT}.{BQ_DATASET}.ndvi_soil_moisture"
+    try:
+        rows = client().query(
+            f"SELECT DISTINCT district_id FROM `{table_id}` WHERE pulled_at = '{end_date.date().isoformat()}'"
+        ).result()
+        return {r.district_id for r in rows}
+    except Exception:
+        return set()
+
+
 def main():
     districts = pd.read_csv(SEED_DIR / "district_master.csv")
     ee.Initialize(project=GCP_PROJECT)
     end_date = datetime.now(timezone.utc)
 
-    rows = []
-    for _, d in districts.iterrows():
+    done = already_pulled_today(end_date)
+    todo = districts[~districts["district_id"].isin(done)]
+    print(f"{len(done)} districts already pulled today, {len(todo)} to go")
+
+    # At 763-district scale a single batch-at-the-end load risks losing the whole run to
+    # a rate limit, a transient GEE error, or this environment's habit of killing
+    # long-lived background bash jobs after a few minutes - load each district straight
+    # to BigQuery as it's pulled instead (same fix already applied to mgnrega_employment.py).
+    pulled = 0
+    for _, d in todo.iterrows():
         print(f"Pulling GEE data for {d['district_id']}...")
         try:
             vals = pull_for_district(d["district_id"], d["lat"], d["lon"], end_date)
@@ -107,25 +130,21 @@ def main():
             print(f"  FAILED: {exc}")
             continue
         ndvi_raw = vals.get("ndvi_raw")
-        rows.append(
-            {
-                "district_id": d["district_id"],
-                "pulled_at": end_date.date().isoformat(),
-                "precip_mm_30d": vals.get("precip_mm_30d"),
-                "precip_asof": vals.get("precip_asof"),
-                "ndvi": (ndvi_raw * 0.0001) if ndvi_raw is not None else None,
-                "ndvi_asof": vals.get("ndvi_asof"),
-                "soil_moisture_pct": vals.get("soil_moisture_ssm"),
-                "soil_moisture_asof": vals.get("soil_moisture_asof"),
-                "source": "GEE:CHIRPS+MOD13Q1+SMAP10KM",
-            }
-        )
+        row = pd.DataFrame([{
+            "district_id": d["district_id"],
+            "pulled_at": end_date.date().isoformat(),
+            "precip_mm_30d": vals.get("precip_mm_30d"),
+            "precip_asof": vals.get("precip_asof"),
+            "ndvi": (ndvi_raw * 0.0001) if ndvi_raw is not None else None,
+            "ndvi_asof": vals.get("ndvi_asof"),
+            "soil_moisture_pct": vals.get("soil_moisture_ssm"),
+            "soil_moisture_asof": vals.get("soil_moisture_asof"),
+            "source": "GEE:CHIRPS+MOD13Q1+SMAP10KM",
+        }])
+        load_dataframe(row, "ndvi_soil_moisture", write_disposition="WRITE_APPEND")
+        pulled += 1
 
-    df = pd.DataFrame(rows)
-    if df.empty:
-        print("No rows pulled, skipping BigQuery load.")
-        return
-    load_dataframe(df, "ndvi_soil_moisture", write_disposition="WRITE_APPEND")
+    print(f"Loaded {pulled}/{len(districts)} districts.")
 
 
 if __name__ == "__main__":

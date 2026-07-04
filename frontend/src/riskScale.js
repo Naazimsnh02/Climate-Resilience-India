@@ -19,5 +19,5 @@ export function riskColorVar(score) {
 // reliably resolve CSS custom properties across themes/browsers.
 export function riskColorHex(score) {
   const band = riskBand(score);
-  return band ? band.hex : "#94a3b8";
+  return band ? band.hex : "#3b5a80";
 }

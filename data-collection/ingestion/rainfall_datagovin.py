@@ -26,8 +26,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import requests
 import pandas as pd
-from common.config import DATA_GOV_IN_KEY, SEED_DIR
-from common.bq_loader import load_dataframe
+from common.config import DATA_GOV_IN_KEY, GCP_PROJECT, BQ_DATASET, SEED_DIR
+from common.bq_loader import load_dataframe, client
 
 RESOURCE_ID = "6c05cd1b-ed59-40c2-bc31-e314f39c6971"
 BASE_URL = f"https://api.data.gov.in/resource/{RESOURCE_ID}"
@@ -41,11 +41,15 @@ RECORDS_PER_DISTRICT = 90  # most recent rows available, not necessarily most re
 PAGE_SIZE = 10
 
 
-def get_with_retry(url, params, max_attempts=5):
+def get_with_retry(url, params, max_attempts=9):
     for attempt in range(max_attempts):
         resp = requests.get(url, params=params, headers=HEADERS, timeout=30)
         if resp.status_code == 429:
-            wait = 2 ** attempt
+            # Backoff capped at 60s - the old uncapped 2**attempt with only 5 attempts (~31s
+            # total) gave up before data.gov.in's throttling window cleared, permanently
+            # skipping ~69 districts in one run (mgnrega_employment.py hit the same issue -
+            # see its get_with_retry for the same fix).
+            wait = min(2 ** attempt, 60)
             print(f"    rate limited, retrying in {wait}s...")
             time.sleep(wait)
             continue
@@ -80,12 +84,30 @@ def fetch_district(state, district_name, max_records=RECORDS_PER_DISTRICT):
     return records
 
 
+def already_pulled():
+    """district_ids already loaded, so a rerun after this environment kills the
+    background job resumes instead of re-fetching every district already done."""
+    table_id = f"{GCP_PROJECT}.{BQ_DATASET}.rainfall_daily"
+    try:
+        rows = client().query(f"SELECT DISTINCT district_id FROM `{table_id}`").result()
+        return {r.district_id for r in rows}
+    except Exception:
+        return set()
+
+
 def main():
     districts = pd.read_csv(SEED_DIR / "district_master.csv")
     now = datetime.now(timezone.utc).isoformat()
 
-    all_records = []
-    for _, d in districts.iterrows():
+    done = already_pulled()
+    todo = districts[~districts["district_id"].isin(done)]
+    print(f"{len(done)} districts already pulled, {len(todo)} to go")
+
+    # Load per-district as we go, not one batch at the end - at 763-district scale a
+    # data.gov.in rate limit or a killed background job shouldn't cost every district
+    # already fetched (same fix as mandi_prices.py/gee_pull.py/weather_current.py).
+    pulled = 0
+    for _, d in todo.iterrows():
         lookup_name = d["datagovin_district_name"]
         print(f"Fetching rainfall for {d['district_id']} (as '{lookup_name}')...")
         try:
@@ -94,17 +116,16 @@ def main():
             print(f"  FAILED: {exc}")
             continue
         print(f"  {len(recs)} records")
-        for r in recs:
-            r["district_id"] = d["district_id"]
-        all_records.extend(recs)
+        if recs:
+            for r in recs:
+                r["district_id"] = d["district_id"]
+            df = pd.DataFrame(recs)
+            df["pulled_at"] = now
+            load_dataframe(df, "rainfall_daily", write_disposition="WRITE_APPEND")
+            pulled += 1
 
-    if not all_records:
-        print("No records fetched, skipping BigQuery load.")
-        return
-
-    df = pd.DataFrame(all_records)
-    df["pulled_at"] = now
-    load_dataframe(df, "rainfall_daily", write_disposition="WRITE_APPEND")
+    print(f"Loaded rainfall data for {pulled} districts this run "
+          f"({len(done) + pulled}/{len(districts)} total).")
 
 
 if __name__ == "__main__":

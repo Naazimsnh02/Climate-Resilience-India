@@ -555,6 +555,30 @@
   flex: 1;
   height: 100%;
   width: 100%;
+  background: var(--bg);
+}
+
+.district-map .leaflet-tile-pane {
+  filter: saturate(1.05);
+}
+
+.district-map .leaflet-control-zoom a {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border) !important;
+}
+
+.district-map .leaflet-control-zoom a:hover {
+  background: var(--surface-2);
+}
+
+.district-map .leaflet-control-attribution {
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  color: var(--text-dim);
+}
+
+.district-map .leaflet-control-attribution a {
+  color: var(--text-dim);
 }
 
 .map-legend {
